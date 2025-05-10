@@ -1,0 +1,17 @@
+{
+    "GOL":[
+        "description of GOL",
+        "interesting facts and cool info on GOL",
+        "Route to conway GOL page"
+    ],
+    "BOIDS":[
+        "description of boids",
+        "interesting facts and cool info on boids",
+        "Route to boids page"
+    ],
+    "GALSIM":[
+        "description of galaxy simulator",
+        "interesting facts and cool info on galsim",
+        "Route to galsim page"    
+    ]
+}
