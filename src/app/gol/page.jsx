@@ -11,7 +11,7 @@ function Point(x,y, id){
     this.color = "rgba(59, 224, 26, 0.68)";
     this.point = [x, y];
 
-    this.draw = function(){
+    this.draw = function(ctx){
         if(this.status===1){
             ctx.fillStyle = this.color;
             ctx.fillRect(x, y, 1, 1);
@@ -20,10 +20,10 @@ function Point(x,y, id){
         }
     }
     // number of living cells around cell in 8 neighborhood
-    this.lives = function() {
+    this.lives = function(points) {
         let live = 0;
-        for (neigh of this.neighs){
-            curr = points[neigh];
+        for (const neigh of this.neighs){
+            const curr = points[neigh];
             // log('this', this);
             if (curr.status===1){
                 live++;
@@ -32,8 +32,8 @@ function Point(x,y, id){
         return live;
     }
     // changes status f cell in nieghborhood
-    this.changeStatus = function(){
-        let live = this.lives();
+    this.changeStatus = function(points){
+        let live = this.lives(points);
         // log('live', live, this.x, this.y);
 
         if (this.status===1){
@@ -83,7 +83,7 @@ const directions = [
 
 // gives you the index of the matching point in points list
 function findIndex(x,y, points){
-    for (ptID in points){
+    for (const ptID in points){
         const x1 = points[ptID].point[0];
         const y1 = points[ptID].point[1];
         if (x1===x && y1===y){
@@ -105,7 +105,10 @@ function populate(gridDimensions){
             id++;
         }
     }
+    return points;
+}
 
+function formNeighs(points, gridDimensions){
     //forming neighbours
     for (const pt of points) {
         for (const d of directions) {
@@ -118,7 +121,7 @@ function populate(gridDimensions){
                 continue
             }
 
-            const match = findIndex(newPoint[0], newPoint[1]);
+            const match = findIndex(newPoint[0], newPoint[1], points);
             if (match !== null) {
                 pt.neighs.push(match);
             }
@@ -127,38 +130,45 @@ function populate(gridDimensions){
 
     }
 
-    return points;
 }
 
-async function execute(initialConfig, points) {
-    const centroidptIndex = findCentroidPoint(points);
-    if (initialConfig === 0) {
-        blinker(centroidptIndex);
-    }
+function sleep(ms) {
+    // console.log('sleep');
+    return new Promise(resolve => setTimeout(resolve, ms));
+
+}
+
+async function execute(points,  ctx, width, height, end=10) {
 
     var points2 = [];
-    const end = 10;
     for (let i = 0; i < end; i++) {
         ctx.fillStyle = "rgb(0, 0, 0)";
         ctx.fillRect(0, 0, width, height);
         for (let pt = 0; pt < points.length; pt++) {
             // need two sets of points
-            points[pt].draw();
-            let statusChange = points[pt].changeStatus();
+            points[pt].draw(ctx);
+            let statusChange = points[pt].changeStatus(points);
+            if(statusChange===1){
+                // console.log('alive pt found in iter',i, 'pos:', pt.x, pt.y);
+            }
             points2[pt] = { ...points[pt] };
             points2[pt].status = statusChange;
         }
         points = points2;
         var points2 = [];
         const hello = await sleep(1000);
+        // console.log('im running');
     }
 }
-function plotpts(points){
+
+function plotpts(points, ctx){
     for (let pt = 0; pt < points.length; pt++) {
         // need two sets of points
-        points[pt].draw();
+        points[pt].draw(ctx);
     }
 }
+
+
 //=============================
 //globals
 
@@ -181,7 +191,7 @@ function StartButton({startClick}){
 function AnimationBox(){
     const box = useRef(null);
     const canvas = <canvas ref={box}></canvas>;
-    const canvasSize = 0.20;
+    const percentageReduce = 0.20;
     const size = 50;
     
     useEffect(
@@ -189,9 +199,8 @@ function AnimationBox(){
             const canvas = box.current;
             const ctx = canvas.getContext('2d');
 
-            ctx.scale(size, size);
-            canvas.width = window.innerWidth - (canvasSize * window.innerWidth);
-            canvas.height = window.innerHeight - (canvasSize * window.innerHeight);
+            canvas.width = window.innerWidth - (percentageReduce * window.innerWidth);
+            canvas.height = window.innerHeight - (percentageReduce * window.innerHeight);
             const width = canvas.width;
             const height = canvas.height;
             const scaledWidth = Math.floor(width / size);
@@ -203,15 +212,20 @@ function AnimationBox(){
             gridDimensions.centroidx = Math.floor(gridDimensions.x / 2);
             gridDimensions.centroidy = Math.floor(gridDimensions.y / 2);
             
+            ctx.scale(size, size);
 
             ctx.fillStyle = "rgb(0, 0, 0)";
             ctx.fillRect(0, 0, width, height);
             ctx.fill();
 
-            const points = populate(gridDimensions);
+            let points = populate(gridDimensions);
+            formNeighs(points, gridDimensions);
             const centroidptindex = findCentroidPoint(points, gridDimensions);
             blinker(centroidptindex, points);
-            // plotpts(points);
+            plotpts(points, ctx);
+            execute(points,ctx, width, height) ;
+            console.log(points[0])
+            console.log(points[0].neighs)
 
         }
         ,[]);
