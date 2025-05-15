@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 
 function Point(x,y, id){
@@ -138,6 +138,7 @@ function sleep(ms) {
 
 }
 
+
 async function execute(points,  ctx, width, height, end=10) {
 
     var points2 = [];
@@ -169,8 +170,33 @@ function plotpts(points, ctx){
 }
 
 
+
+function initPointsConfig(cfg, points, gridDimensions){
+    const pos = cfg.positions;
+    console.log(cfg.rowCount, gridDimensions, 'rowcount, gridims');
+    if(cfg.rowCount>gridDimensions.x){
+        throw new Error('map does not fit in canvas plot ');
+    }
+
+    console.log('plotting',cfg.name, cfg.mapLink, cfg.rowCount, cfg.positions);
+    console.log('pointsARRAY');
+    console.log(points)
+    for(const p of pos){
+        const x = p.x;
+        const y = p.y;
+
+        for (const pt of points){
+            const match = findIndex(x,y,points);
+            points[match].status=1
+            if(match===null){
+                throw new Error('error in finding matching point in points array');
+            }
+        }
+    }
+    return 1;
+}
+
 //=============================
-//globals
 
 
 
@@ -193,9 +219,15 @@ function AnimationBox(){
     const canvas = <canvas ref={box}></canvas>;
     const percentageReduce = 0.20;
     const size = 50;
+    const [points, setPoints] = useState(null);
+    const [ctx, setCtx] = useState(null);
+    const [gridDimensions, setgridDimensions] = useState(null);
+    const [configNum, setconfigNum] = useState(null);
+    const [mapData, setmapData] = useState(null);
     
     useEffect(
         ()=>{
+            // setting default config to blinker and plotting points array
             const canvas = box.current;
             const ctx = canvas.getContext('2d');
 
@@ -211,34 +243,106 @@ function AnimationBox(){
             };
             gridDimensions.centroidx = Math.floor(gridDimensions.x / 2);
             gridDimensions.centroidy = Math.floor(gridDimensions.y / 2);
-            
+
             ctx.scale(size, size);
 
             ctx.fillStyle = "rgb(0, 0, 0)";
             ctx.fillRect(0, 0, width, height);
             ctx.fill();
 
-            let points = populate(gridDimensions);
+
+            const points = populate(gridDimensions);
             formNeighs(points, gridDimensions);
             const centroidptindex = findCentroidPoint(points, gridDimensions);
-            blinker(centroidptindex, points);
+
+            if(configNum===null){
+                blinker(centroidptindex, points);
+                setgridDimensions(gridDimensions);
+            }else{
+                //run set configuration here
+                let plot;
+                console.log('re-ran, ', configNum, mapData);
+                try{
+
+                    plot = initPointsConfig(mapData, points, gridDimensions)
+                }catch(e){
+                    console.error('error in initialising points config:',e);
+                }
+                
+                if (plot===1){
+                    console.log('plot success');
+                }
+                  
+            }
             plotpts(points, ctx);
-            execute(points,ctx, width, height) ;
-            console.log(points[0])
-            console.log(points[0].neighs)
+            // execute(points,ctx, width, height) ;
+            // console.log(points[0])
+            // console.log(points[0].neighs)
+            console.log(points.length, ' points length');
+            console.log(points[points.length -1 ].id);
+            console.log(gridDimensions);
+            console.log(points[gridDimensions.x-1])
 
+            setCtx(ctx);
+            setPoints(points);
         }
-        ,[]);
+        ,[configNum]);
 
-    return canvas;
+
+        function playButton(){
+            execute(points,ctx, gridDimensions.x, gridDimensions.y) ;
+            console.log('play button points:',points, ctx, gridDimensions);
+        }
+
+        async function configButtonClick(e) {
+
+            const parELe = e.target.parentElement;
+            console.log('clicked mapp button', e.target.parentElement);
+            console.log(parELe.id, '<fetching id');
+            const mapID = parELe.id;
+            const resp = await fetch(`http://localhost:3000/api/gol/${parELe.id}`).catch((e) => {
+                console.error('error in getting map with id', id, 'error:', e);
+            });
+            const data = await resp.json();
+            console.log(data);
+            setmapData(data);
+            setconfigNum(mapID);
+        }
+
+        function ConfigList({ configButtonClick }) {
+            //156 index configs
+            const lists = [];
+            for (let configIndex = 0; configIndex < 156; configIndex++) {
+                lists.push(
+                    <div>
+                        <li key={configIndex} id={configIndex}>map number: {configIndex}
+                            <button onClick={configButtonClick}> select </button>
+                        </li>
+
+                    </div>
+
+                );
+            }
+            const finalList = <ul>{lists.map((li) => li)}</ul>
+            return finalList;
+        }
+
+        const animationElement = <div> 
+            <button onClick={playButton}> play </button>
+            {canvas} 
+            <ConfigList configButtonClick={configButtonClick} /> 
+            </div>
+    return animationElement;
 }
+
+
 
 export default function Golpage(){
     return (
         <div>
             <p> this is the conway GOL page </p>
-            <StartButton startClick={startClick}/>
-            <AnimationBox/>            
+            <AnimationBox/>      
+                 
         </div>
    );
 }
