@@ -44,12 +44,12 @@ function Point(x,y, id){
             else if (live>=2 && live<=3){
                 return 1;
             }
-            else if (live>=3){
+            else if (live>=4){
                 const status = 0;
                 return status;
             }
             }else{
-            if (live>=3){
+            if (live===3){
                 const status = 1;
                 return status;
             }
@@ -139,14 +139,15 @@ function sleep(ms) {
 }
 
 
-async function execute(points,  ctx, width, height, end=10) {
-
+let globalStopAnimation = 0;
+async function execute(points,  ctx, width, height, speed, end=10) {
     var points2 = [];
     for (let i = 0; i < end; i++) {
+        if (globalStopAnimation===1){return;}
         ctx.fillStyle = "rgb(0, 0, 0)";
         ctx.fillRect(0, 0, width, height);
         for (let pt = 0; pt < points.length; pt++) {
-            // need two sets of points
+            //  need two sets of points
             points[pt].draw(ctx);
             let statusChange = points[pt].changeStatus(points);
             if(statusChange===1){
@@ -157,9 +158,10 @@ async function execute(points,  ctx, width, height, end=10) {
         }
         points = points2;
         var points2 = [];
-        const hello = await sleep(1000);
+        const hello = await sleep(speed);
         // console.log('im running');
     }
+    return 
 }
 
 function plotpts(points, ctx){
@@ -184,14 +186,14 @@ function initPointsConfig(cfg, points, gridDimensions){
     for(const p of pos){
         const x = p.x;
         const y = p.y;
-
-        for (const pt of points){
-            const match = findIndex(x,y,points);
-            points[match].status=1
-            if(match===null){
-                throw new Error('error in finding matching point in points array');
-            }
+// find relationship between id and position. use that to index.
+        
+        const match = findIndex(x,y,points);
+        points[match].status=1
+        if(match===null){
+            throw new Error('error in finding matching point in points array');
         }
+        
     }
     return 1;
 }
@@ -218,7 +220,12 @@ function AnimationBox(){
     const box = useRef(null);
     const canvas = <canvas ref={box}></canvas>;
     const percentageReduce = 0.20;
-    const size = 50;
+    const [manualReRun, setmanualReRun] = useState(0);
+    const ranDuringAnimation  = useRef(0);
+    const [animationPlay, setanimationPlay] = useState(0);
+    const numIter = useRef(50);
+    const speed = useRef(1000);
+    const [size, setsize] = useState(20);
     const [points, setPoints] = useState(null);
     const [ctx, setCtx] = useState(null);
     const [gridDimensions, setgridDimensions] = useState(null);
@@ -227,72 +234,171 @@ function AnimationBox(){
     
     useEffect(
         ()=>{
-            // setting default config to blinker and plotting points array
-            const canvas = box.current;
-            const ctx = canvas.getContext('2d');
+            if(animationPlay !== 1)
+                {
+                    const canvas = box.current;
+                const ctx = canvas.getContext('2d');
 
-            canvas.width = window.innerWidth - (percentageReduce * window.innerWidth);
-            canvas.height = window.innerHeight - (percentageReduce * window.innerHeight);
-            const width = canvas.width;
-            const height = canvas.height;
-            const scaledWidth = Math.floor(width / size);
-            const scaledHeight = Math.floor(height / size); 
-            const gridDimensions = {
-                x: scaledWidth - 1,
-                y: scaledHeight - 1,
-            };
-            gridDimensions.centroidx = Math.floor(gridDimensions.x / 2);
-            gridDimensions.centroidy = Math.floor(gridDimensions.y / 2);
+                canvas.width = window.innerWidth - (percentageReduce * window.innerWidth);
+                canvas.height = window.innerHeight - (percentageReduce * window.innerHeight);
+                const width = canvas.width;
+                const height = canvas.height;
+                const scaledWidth = Math.floor(width / size);
+                const scaledHeight = Math.floor(height / size); 
+                const gridDimensions = {
+                    x: scaledWidth - 1,
+                    y: scaledHeight - 1,
+                };
+                gridDimensions.centroidx = Math.floor(gridDimensions.x / 2);
+                gridDimensions.centroidy = Math.floor(gridDimensions.y / 2);
 
-            ctx.scale(size, size);
+                ctx.scale(size, size);
 
-            ctx.fillStyle = "rgb(0, 0, 0)";
-            ctx.fillRect(0, 0, width, height);
-            ctx.fill();
+                ctx.fillStyle = "rgb(0, 0, 0)";
+                ctx.fillRect(0, 0, width, height);
+                ctx.fill();
 
 
-            const points = populate(gridDimensions);
-            formNeighs(points, gridDimensions);
-            const centroidptindex = findCentroidPoint(points, gridDimensions);
+                const points = populate(gridDimensions);
+                formNeighs(points, gridDimensions);
+                const centroidptindex = findCentroidPoint(points, gridDimensions);
 
-            if(configNum===null){
-                blinker(centroidptindex, points);
+                if(configNum===null){
+                    blinker(centroidptindex, points);
+                }else{
+                    //run set configuration here
+                    let plot;
+                    console.log('re-ran, ', configNum, mapData);
+                    try{
+
+                        plot = initPointsConfig(mapData, points, gridDimensions)
+                    }catch(e){
+                        console.error('error in initialising points config:',e);
+                    }
+                    
+                    if (plot===1){
+                        console.log('plot success');
+                    }
+                    
+                }
+                plotpts(points, ctx);
+                // execute(points,ctx, width, height) ;
+                // console.log(points[0])
+                // console.log(points[0].neighs)
+                console.log(points.length, ' points length');
+                console.log(points[points.length -1 ].id);
+                console.log(gridDimensions);
+                console.log(points[gridDimensions.x-1])
+
                 setgridDimensions(gridDimensions);
+                setCtx(ctx);
+                setPoints(points);
+                console.log(`useEffect ran again. values: size ${size}, speed ${speed.current}, map num ${configNum}`);
             }else{
-                //run set configuration here
-                let plot;
-                console.log('re-ran, ', configNum, mapData);
-                try{
-
-                    plot = initPointsConfig(mapData, points, gridDimensions)
-                }catch(e){
-                    console.error('error in initialising points config:',e);
-                }
-                
-                if (plot===1){
-                    console.log('plot success');
-                }
-                  
+                const woot =1;
+                ranDuringAnimation.current  = woot;
+                console.log(`useEffect Else branch ran again value of ranDuringAnimation should be 1 ${ranDuringAnimation.current}`);
             }
-            plotpts(points, ctx);
-            // execute(points,ctx, width, height) ;
-            // console.log(points[0])
-            // console.log(points[0].neighs)
-            console.log(points.length, ' points length');
-            console.log(points[points.length -1 ].id);
-            console.log(gridDimensions);
-            console.log(points[gridDimensions.x-1])
-
-            setCtx(ctx);
-            setPoints(points);
         }
-        ,[configNum]);
+        ,[configNum, size,   manualReRun]);
 
+        function stopButtonClick(){
+            globalStopAnimation=1;
+            // const rerun = manualReRun + 1;
+            // setmanualReRun(rerun); 
+        }
 
-        function playButton(){
-            execute(points,ctx, gridDimensions.x, gridDimensions.y) ;
+        function StopButton({ stopButtonClick }) {
+            return <button onClick={stopButtonClick}> stop </button>
+        }
+
+        async function playButtonClick(){
+            if (globalStopAnimation===1){
+                globalStopAnimation=0;
+            }
+            let animationPlay=1;
+            setanimationPlay(animationPlay);
+            console.log(animationPlay, 'animation play b4 exec');
+            console.log(`randuringAnimation before animation should be 0${ranDuringAnimation.current}`)
+
+            await execute(points,ctx, gridDimensions.x, gridDimensions.y, speed.current, numIter.current) ;
+
+            animationPlay = 0;
+            setanimationPlay(animationPlay);
+            console.log(animationPlay, 'animation play after exec');
+            console.log(`randuringAnimation after animation should be 1 ${ranDuringAnimation.current}`)
+            
+            const rerun = manualReRun + 1;
+            setmanualReRun(rerun); 
+            // this causes 
             console.log('play button points:',points, ctx, gridDimensions);
+            console.log('playButton speed', speed.current);
         }
+
+        function PlayButton({playButtonClick}){
+            return <button onClick={playButtonClick}> play </button>
+        }
+
+        
+
+        function sizeButtonClick(size){
+            console.log('size Button clicked!');
+            const newSize = size;
+            setsize(newSize);
+        }
+        
+        function SizeButton({sizeButtonClick}){
+            const sizeOptions = [10,20,30,40,50];
+            const sizeList = 
+            <div>
+                <ul>
+                    {sizeOptions.map((size) => (
+                        <li key={size} id={size}> <button onClick={() => sizeButtonClick(size)}> change size {size}</button> </li>
+                    ))}
+                </ul>
+            </div>
+            
+            return sizeList
+        }
+
+        function speedButtonClick(newSpeed){
+            console.log('speed button clicked', newSpeed);
+            speed.current = newSpeed;
+        }
+
+        function SpeedButton({speedButtonClick}){
+            const speedOptions = [1000, 800, 600, 400, 200, 100, 80];
+            const speedList =
+                <div>
+                    <ul>
+                        {speedOptions.map((speed) => (
+                            <li key={speed} id={speed}> <button onClick={() => speedButtonClick(speed)}> change speed {speed/1000} seconds</button> </li>
+                        ))}
+                    </ul>
+                </div>
+
+            return speedList 
+        }
+        
+        function iterButtonClick(newIter){
+            console.log('iter button clicked', newIter);
+            numIter.current = newIter;
+        }
+
+        function IterButton({iterButtonClick}){
+            const iterOptions = [10,20,40,50,80,100,200];
+            const iterList =
+                <div>
+                    <ul>
+                        {iterOptions.map((iter) => (
+                            <li key={iter} id={iter}> <button onClick={() => iterButtonClick(iter)}> change iter {iter} </button> </li>
+                        ))}
+                    </ul>
+                </div>
+
+            return iterList 
+        }
+
 
         async function configButtonClick(e) {
 
@@ -326,9 +432,13 @@ function AnimationBox(){
             const finalList = <ul>{lists.map((li) => li)}</ul>
             return finalList;
         }
-
         const animationElement = <div> 
-            <button onClick={playButton}> play </button>
+            {/* <button onClick={playButton}> play </button> */}
+            <PlayButton playButtonClick={playButtonClick}/>
+            <StopButton stopButtonClick={stopButtonClick}/>
+            <SizeButton sizeButtonClick={sizeButtonClick}/>
+            <SpeedButton speedButtonClick={speedButtonClick}/>
+            <IterButton iterButtonClick = {iterButtonClick}/>
             {canvas} 
             <ConfigList configButtonClick={configButtonClick} /> 
             </div>
@@ -349,8 +459,26 @@ export default function Golpage(){
 
 
 /*
-default initial config
-press start - animataion plays
-press stop - animation stops
-choose animation menu
+done:
+if you click on new map mid animation - surrent animation stops and new animation map displayed 
+set size, speed, number of iterations, stop
+
+not done:
+speed up inital config set up.
+- figure out sequence of events
+- time chunks of code to identify problem ares
+- find solution.
+
+cant click on play while config is being set up
+highlight selected options
+display map name, period number.
+centre images
+create route to gol page on main life page
+error message when map not displayed on screen
+
+later:
+speed up gol algo inital configuration setup for smaller sizes and larger maps. if its the inital config of 
+point classes that is taking time, that can be done beofre hand, stored in a json file and simply read!
+ORR
+create loading configuration screen.
 */
