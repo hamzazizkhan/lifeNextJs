@@ -460,12 +460,10 @@ function AnimationBox(){
             const lists = [];
             for (let configIndex = 0; configIndex < 156; configIndex++) {
                 lists.push(
-                    <div>
                         <li key={configIndex} id={configIndex}>map number: {configIndex}
                             <button onClick={configButtonClick}> select </button>
                         </li>
 
-                    </div>
 
                 );
             }
