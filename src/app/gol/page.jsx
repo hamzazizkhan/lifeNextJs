@@ -22,9 +22,11 @@ function Point(x,y, id){
     // number of living cells around cell in 8 neighborhood
     this.lives = function(points) {
         let live = 0;
+        // console.log('neighs',this.neighs, 'point',this.x,this.y);
         for (const neigh of this.neighs){
             const curr = points[neigh];
             // log('this', this);
+            // console.log('neigh,', neigh);
             if (curr.status===1){
                 live++;
             }
@@ -82,15 +84,17 @@ const directions = [
     [-1, -1], [1, -1], [-1, 1], [1, 1]]  // up, down, right, left, bottom left, bottom right, top left, top right
 
 // gives you the index of the matching point in points list
-function findIndex(x,y, points){
-    for (const ptID in points){
-        const x1 = points[ptID].point[0];
-        const y1 = points[ptID].point[1];
-        if (x1===x && y1===y){
-            return ptID;
-        }
-    }
-    return null;
+function findIndex(x,y, gridDimensions){
+    // for (const ptID in points){
+    //     const x1 = points[ptID].point[0];
+    //     const y1 = points[ptID].point[1];
+    //     if (x1===x && y1===y){
+    //         return ptID;
+    //     }
+    // }
+    const maxy = gridDimensions.y;
+    const index = (maxy*x) +y
+    return index;
 }
 
 function populate(gridDimensions){
@@ -110,24 +114,36 @@ function populate(gridDimensions){
 
 function formNeighs(points, gridDimensions){
     //forming neighbours
+    let max = 0;
     for (const pt of points) {
         for (const d of directions) {
             const newPoint = [pt.point[0] + d[0], pt.point[1] + d[1]];
 
             // checking dimensions
-            if (newPoint[0] > gridDimensions.x || newPoint[1] > gridDimensions.y) {
+            if (newPoint[0] > gridDimensions.x -1 || newPoint[1] > gridDimensions.y -1) {
                 continue
             } else if (newPoint[0] < 0 || newPoint[1] < 0) {
                 continue
             }
 
-            const match = findIndex(newPoint[0], newPoint[1], points);
+            const match = findIndex(newPoint[0], newPoint[1], gridDimensions);
+            if (match>=points.length){
+                console.log('match greater ', match, newPoint);
+            }
+            // const newID =  gridDimensions.x *(newPoint[1])+newPoint[1];
+            // if(newPoint[0]===0 || newPoint[1]===1){
+
+                // console.log(`${newPoint[0]},${newPoint[1]} realID ${match} newID ${newID}, gridx ${gridDimensions.x}`);
+            // }
+            // if(match===newID-1){
+            //     console.log('True');
+            // }
             if (match !== null) {
                 pt.neighs.push(match);
             }
 
         }
-
+        
     }
 
 }
@@ -188,7 +204,7 @@ function initPointsConfig(cfg, points, gridDimensions){
         const y = p.y;
 // find relationship between id and position. use that to index.
         
-        const match = findIndex(x,y,points);
+        const match = findIndex(x,y,gridDimensions);
         points[match].status=1
         if(match===null){
             throw new Error('error in finding matching point in points array');
@@ -258,20 +274,39 @@ function AnimationBox(){
                 ctx.fillRect(0, 0, width, height);
                 ctx.fill();
 
-
+                const populateTime = performance.now();
+                const solePop = performance.now();
                 const points = populate(gridDimensions);
-                formNeighs(points, gridDimensions);
-                const centroidptindex = findCentroidPoint(points, gridDimensions);
+                const endsolePop = performance.now();
+                console.log('time taken for populating only ', endsolePop-solePop);
 
+                const soleNieghs = performance.now();
+                formNeighs(points, gridDimensions);
+                const endsoleNeighs = performance.now();
+                console.log('time taken to form neighs', endsoleNeighs- soleNieghs);
+
+                const soleCentroid = performance.now();
+                const centroidptindex = findCentroidPoint(points, gridDimensions);
+                const endSoleCEntroid = performance.now();
+                console.log('time taken to find centroid poitn',endSoleCEntroid - soleCentroid);
+
+                const populatTImeEnd = performance.now(); 
+                console.log('time taken to populate, formneighs and get centroidpoint', populatTImeEnd-populateTime);
+
+                let timetoinit;
+                let timetoinitEnd;
                 if(configNum===null){
                     blinker(centroidptindex, points);
+                    console.log('blinker points', points);
                 }else{
                     //run set configuration here
                     let plot;
                     console.log('re-ran, ', configNum, mapData);
                     try{
-
-                        plot = initPointsConfig(mapData, points, gridDimensions)
+                        timetoinit = performance.now();
+                        plot = initPointsConfig(mapData, points, gridDimensions);
+                        timetoinitEnd = performance.now();
+                        console.log('time to initalise config',timetoinitEnd-timetoinit);
                     }catch(e){
                         console.error('error in initialising points config:',e);
                     }
@@ -281,7 +316,12 @@ function AnimationBox(){
                     }
                     
                 }
+                const timetoplot = performance.now(); 
                 plotpts(points, ctx);
+                const timetoplotEnd = performance.now();
+                console.log('time taken to plot config', timetoplotEnd- timetoplot);
+
+                console.log('cumulative time taken for setup in useEffect:', (timetoplotEnd - timetoplot) + (timetoinitEnd - timetoinit) + (populatTImeEnd - populateTime)  );
                 // execute(points,ctx, width, height) ;
                 // console.log(points[0])
                 // console.log(points[0].neighs)
@@ -459,26 +499,34 @@ export default function Golpage(){
 
 
 /*
+==============================================================
 done:
-if you click on new map mid animation - surrent animation stops and new animation map displayed 
-set size, speed, number of iterations, stop
+- if you click on new map mid animation - surrent animation stops and new animation map displayed 
+- set size, speed, number of iterations, stop
 
-not done:
-speed up inital config set up.
+1) speed up inital config (esp for smaller scales and larger maps) set up.
 - figure out sequence of events
-- time chunks of code to identify problem ares
+- time chunks of code to identify problem areas (config setup issue / animation plot issue).
 - find solution.
+2) i want to be able to set the scale really small very easily. 
+==============================================================
 
+easy:
 cant click on play while config is being set up
+pop up to wait for animation to finish to see new settings.
 highlight selected options
 display map name, period number.
 centre images
 create route to gol page on main life page
 error message when map not displayed on screen
+lower scales options.
+design page
 
-later:
-speed up gol algo inital configuration setup for smaller sizes and larger maps. if its the inital config of 
-point classes that is taking time, that can be done beofre hand, stored in a json file and simply read!
-ORR
-create loading configuration screen.
+user experience!
+theme settings
+
+if time allows:
+drag and drop combine two configs in the same canvas!! 
+click to add point
+maybe input field and option for parameters
 */
