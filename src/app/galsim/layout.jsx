@@ -7,7 +7,7 @@ export default function RootLayout({ children }) {
 
             <head>
                 <meta charSet="utf-8" />
-                <title> Game of life </title>
+                <title>galsim </title>
 
             </head>
 

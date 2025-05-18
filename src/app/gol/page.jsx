@@ -1,5 +1,6 @@
 'use client';
 import { useState, useRef, useEffect } from "react";
+import 'rippleui/dist/css/styles.css';
 
 
 function Point(x,y, id){
@@ -376,7 +377,7 @@ function AnimationBox(){
         }
 
         function PlayButton({playButtonClick}){
-            return <button onClick={playButtonClick}> play </button>
+            return <button  onClick={playButtonClick}> play </button>
         }
 
         

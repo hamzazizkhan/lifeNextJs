@@ -1,3 +1,7 @@
-export default function Golpage(){
-    return <p> this is the conway GOL page </p>;
+import 'rippleui/dist/css/styles.css';
+
+export default function Galsimpage(){
+    return <button className="btn"> should be ripple UI button</button>;
+
+
 }
