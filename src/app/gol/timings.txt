@@ -1,0 +1,15 @@
+traffic circle 141
+time taken to populate, formneighs and get centroidpoint 11782.20000000298
+cumulative time taken for setup in useEffect: 11983.79999999702
+
+time taken for populating only  3.2000000029802322
+ time taken to form neighs 11719.80000000447
+ time taken to find centroid poitn 0.19999999552965164
+ 
+after changes to findIndex function:
+time taken to populate, formneighs and get centroidpoint 7.700000002980232
+cumulative time taken for setup in useEffect: 14.100000008940697
+
+time taken for populating only  4.4000000059604645
+page.jsx:286 time taken to form neighs 1.199999988079071
+page.jsx:291 time taken to find centroid poitn 0.09999999403953552
