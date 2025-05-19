@@ -220,18 +220,51 @@ function initPointsConfig(cfg, points, gridDimensions){
 
 
 //=============================
-function startClick(){
-        // if (initialConfig===0){
-        //     blinker(findCentroidPoint(points))
-        // }
-        console.log('button click ran');
+
+async function getMapNamesPromise() {
+    const url = 'http://localhost:3000/api/gol/names'
+    const req = new Request(url)
+    const resp = await fetch(req).catch((e) => {
+        console.error('could not get map names', e);
+    })
+    const mapNames = await resp.json();
+    console.log('map names', mapNames)
+    return mapNames;
+    
 }
 
-function StartButton({startClick}){
-    const button = <button onClick={startClick}> start </button>
-    return button;
-}
 
+
+function ConfigList({mapNames, setmapData, setconfigNum}) {
+    async function configButtonClick(e) {
+
+        const parELe = e.target.parentElement;
+        console.log('clicked mapp button', e.target.parentElement);
+        console.log(parELe.id, '<fetching id');
+        const mapID = parELe.id;
+        const resp = await fetch(`http://localhost:3000/api/gol/${parELe.id}`).catch((e) => {
+            console.error('error in getting map with id', id, 'error:', e);
+        });
+        const data = await resp.json();
+        console.log(data);
+        setmapData(data);
+        setconfigNum(mapID);
+    }
+    //156 index configs
+
+    const lists = [];
+    for (let configIndex = 0; configIndex < 156; configIndex++) {
+        lists.push(
+            <li key={configIndex} id={configIndex}>map number: {configIndex} name: {mapNames[configIndex].name} period: {mapNames[configIndex].period} link: {mapNames[configIndex].mapLink}
+                <button onClick={configButtonClick}> select </button>
+            </li>
+
+
+        );
+    }
+    const finalList = <ul>{lists.map((li) => li)}</ul>
+    return finalList;
+}
 
 function AnimationBox(){
     const box = useRef(null);
@@ -240,7 +273,7 @@ function AnimationBox(){
     const [manualReRun, setmanualReRun] = useState(0);
     const ranDuringAnimation  = useRef(0);
     const [showAlert, setshowAlert] = useState(false);
-    // const showAlert = useRef(false);
+    const [mapFitAlert, setmapFitAlert] = useState(false);
     const [animationPlay, setanimationPlay] = useState(0);
     const numIter = useRef(50);
     const speed = useRef(1000);
@@ -250,13 +283,24 @@ function AnimationBox(){
     const [gridDimensions, setgridDimensions] = useState(null);
     const [configNum, setconfigNum] = useState(null);
     const [mapData, setmapData] = useState(null);
-    
+    const [mapNames, setmapNames] = useState(false);
+   
+    useEffect(()=>{
+        async function getMapNamesData(){
+            const names = await getMapNamesPromise();
+            setmapNames(names);
+        }
+        getMapNamesData();
+        console.log('fetch for names');
+    }, []) 
+
     useEffect(
         ()=>{
             if(animationPlay !== 1)
                 {
-                if(showAlert===true){
+                if(showAlert===true || mapFitAlert===true){
                     setshowAlert(false)
+                    setmapFitAlert(false);
 
                 }
                 const canvas = box.current;
@@ -316,6 +360,8 @@ function AnimationBox(){
                         console.log('time to initalise config',timetoinitEnd-timetoinit);
                     }catch(e){
                         console.error('error in initialising points config:',e);
+                        const mapFitAlert = true;
+                        setmapFitAlert(true);
                     }
                     
                     if (plot===1){
@@ -353,8 +399,8 @@ function AnimationBox(){
         }
         ,[configNum, size,   manualReRun]);
 
-        function cancelAlert(){
-            setshowAlert(false);
+        function cancelAlert(setVariable){
+            setVariable(false);
         }
         function stopButtonClick(){
             globalStopAnimation=1;
@@ -370,23 +416,26 @@ function AnimationBox(){
             if (globalStopAnimation===1){
                 globalStopAnimation=0;
             }
-            let animationPlay=1;
-            setanimationPlay(animationPlay);
-            console.log(animationPlay, 'animation play b4 exec');
-            console.log(`randuringAnimation before animation should be 0${ranDuringAnimation.current}`)
+            if (animationPlay!==1){
+                let animationPlay = 1;
+                setanimationPlay(animationPlay);
+                console.log(animationPlay, 'animation play b4 exec');
+                console.log(`randuringAnimation before animation should be 0${ranDuringAnimation.current}`)
 
-            await execute(points,ctx, gridDimensions.x, gridDimensions.y, speed.current, numIter.current) ;
+                await execute(points, ctx, gridDimensions.x, gridDimensions.y, speed.current, numIter.current);
 
-            animationPlay = 0;
-            setanimationPlay(animationPlay);
-            console.log(animationPlay, 'animation play after exec');
-            console.log(`randuringAnimation after animation should be 1 ${ranDuringAnimation.current}`)
+                animationPlay = 0;
+                setanimationPlay(animationPlay);
+                console.log(animationPlay, 'animation play after exec');
+                console.log(`randuringAnimation after animation should be 1 ${ranDuringAnimation.current}`)
+
+                const rerun = manualReRun + 1;
+                setmanualReRun(rerun);
+                // this causes 
+                console.log('play button points:', points, ctx, gridDimensions);
+                console.log('playButton speed', speed.current);
+            }
             
-            const rerun = manualReRun + 1;
-            setmanualReRun(rerun); 
-            // this causes 
-            console.log('play button points:',points, ctx, gridDimensions);
-            console.log('playButton speed', speed.current);
         }
 
         function PlayButton({playButtonClick}){
@@ -453,47 +502,51 @@ function AnimationBox(){
             return iterList 
         }
 
+        
+        // async function configButtonClick(e) {
 
-        async function configButtonClick(e) {
+        //     const parELe = e.target.parentElement;
+        //     console.log('clicked mapp button', e.target.parentElement);
+        //     console.log(parELe.id, '<fetching id');
+        //     const mapID = parELe.id;
+        //     const resp = await fetch(`http://localhost:3000/api/gol/${parELe.id}`).catch((e) => {
+        //         console.error('error in getting map with id', id, 'error:', e);
+        //     });
+        //     const data = await resp.json();
+        //     console.log(data);
+        //     setmapData(data);
+        //     setconfigNum(mapID);
+        // }
 
-            const parELe = e.target.parentElement;
-            console.log('clicked mapp button', e.target.parentElement);
-            console.log(parELe.id, '<fetching id');
-            const mapID = parELe.id;
-            const resp = await fetch(`http://localhost:3000/api/gol/${parELe.id}`).catch((e) => {
-                console.error('error in getting map with id', id, 'error:', e);
-            });
-            const data = await resp.json();
-            console.log(data);
-            setmapData(data);
-            setconfigNum(mapID);
-        }
-
-        function ConfigList({ configButtonClick }) {
-            //156 index configs
-            const lists = [];
-            for (let configIndex = 0; configIndex < 156; configIndex++) {
-                lists.push(
-                        <li key={configIndex} id={configIndex}>map number: {configIndex}
-                            <button onClick={configButtonClick}> select </button>
-                        </li>
+        // function ConfigList({ configButtonClick}) {
+        //     //156 index configs
+        //     console.log(mapNames, 'mapNames in config list');
+        //     const lists = [];
+        //     for (let configIndex = 0; configIndex < 156; configIndex++) {
+        //         lists.push(
+        //                 <li key={configIndex} id={configIndex}>map number: {configIndex} name: {mapNames[configIndex].name} period: {mapNames[configIndex].period} link: {mapNames[configIndex].mapLink}
+        //                     <button onClick={configButtonClick}> select </button>
+        //                 </li>
 
 
-                );
-            }
-            const finalList = <ul>{lists.map((li) => li)}</ul>
-            return finalList;
-        }
+        //         );
+        //     }
+        //     const finalList = <ul>{lists.map((li) => li)}</ul>
+        //     return finalList;
+        // }
+
+        
         const animationElement = <div> 
             {/* <button onClick={playButton}> play </button> */}
-            {showAlert && <Alert Title={'too fast!'} Long={'stop animation to see your changes'} cancelAlert={cancelAlert}/>}
+            {showAlert && <Alert Title={'too fast!'} Long={'stop animation to see your changes'} cancelAlert={()=> cancelAlert(setshowAlert)}/>}
+            {mapFitAlert && <Alert Title={'map too large'} Long={'try reducing map size'} cancelAlert={()=>{cancelAlert(setmapFitAlert)}}/>}
             <PlayButton playButtonClick={playButtonClick}/>
             <StopButton stopButtonClick={stopButtonClick}/>
             <SizeButton sizeButtonClick={sizeButtonClick}/>
             <SpeedButton speedButtonClick={speedButtonClick}/>
             <IterButton iterButtonClick = {iterButtonClick}/>
             {canvas} 
-            <ConfigList configButtonClick={configButtonClick} /> 
+            {mapNames && <ConfigList mapNames={mapNames} setconfigNum={setconfigNum} setmapData={setmapData}/> }
             </div>
     return animationElement;
 }
@@ -522,18 +575,20 @@ done:
 - time chunks of code to identify problem areas (config setup issue / animation plot issue).
 - find solution.
 2) i want to be able to set the scale really small very easily. 
+
+pop up to wait for animation to finish to see new settings.
+display map name, period number.
+seperate out components - make cleaner and mroe efficient so that you dont make un needed fetch requests to json data for map names
+error message when map does fit screen, reduce scale notification
 ==============================================================
 
 easy:
 
-pop up to wait for animation to finish to see new settings.
-highlight selected options
-display map name, period number.
 centre images
-create route to gol page on main life page
-error message when map not displayed on screen
 lower scales options.
+highlight selected options
 design page
+create route to gol page on main life page
 
 user experience!
 theme settings
