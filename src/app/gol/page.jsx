@@ -1,7 +1,7 @@
 'use client';
 import { useState, useRef, useEffect } from "react";
 import 'rippleui/dist/css/styles.css';
-
+import Alert from '@/components/ui/Alert'
 
 function Point(x,y, id){
     this.x = x;
@@ -239,6 +239,8 @@ function AnimationBox(){
     const percentageReduce = 0.20;
     const [manualReRun, setmanualReRun] = useState(0);
     const ranDuringAnimation  = useRef(0);
+    const [showAlert, setshowAlert] = useState(false);
+    // const showAlert = useRef(false);
     const [animationPlay, setanimationPlay] = useState(0);
     const numIter = useRef(50);
     const speed = useRef(1000);
@@ -253,7 +255,11 @@ function AnimationBox(){
         ()=>{
             if(animationPlay !== 1)
                 {
-                    const canvas = box.current;
+                if(showAlert===true){
+                    setshowAlert(false)
+
+                }
+                const canvas = box.current;
                 const ctx = canvas.getContext('2d');
 
                 canvas.width = window.innerWidth - (percentageReduce * window.innerWidth);
@@ -338,17 +344,24 @@ function AnimationBox(){
             }else{
                 const woot =1;
                 ranDuringAnimation.current  = woot;
+                setshowAlert(true);
+                // showAlert = true;
+                console.log(showAlert, 'showALert');
+
                 console.log(`useEffect Else branch ran again value of ranDuringAnimation should be 1 ${ranDuringAnimation.current}`);
             }
         }
         ,[configNum, size,   manualReRun]);
 
+        function cancelAlert(){
+            setshowAlert(false);
+        }
         function stopButtonClick(){
             globalStopAnimation=1;
             // const rerun = manualReRun + 1;
             // setmanualReRun(rerun); 
         }
-
+            
         function StopButton({ stopButtonClick }) {
             return <button onClick={stopButtonClick}> stop </button>
         }
@@ -473,6 +486,7 @@ function AnimationBox(){
         }
         const animationElement = <div> 
             {/* <button onClick={playButton}> play </button> */}
+            {showAlert && <Alert Title={'too fast!'} Long={'stop animation to see your changes'} cancelAlert={cancelAlert}/>}
             <PlayButton playButtonClick={playButtonClick}/>
             <StopButton stopButtonClick={stopButtonClick}/>
             <SizeButton sizeButtonClick={sizeButtonClick}/>
@@ -511,7 +525,7 @@ done:
 ==============================================================
 
 easy:
-cant click on play while config is being set up
+
 pop up to wait for animation to finish to see new settings.
 highlight selected options
 display map name, period number.
