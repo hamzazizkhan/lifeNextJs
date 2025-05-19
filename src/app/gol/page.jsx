@@ -2,6 +2,8 @@
 import { useState, useRef, useEffect } from "react";
 import 'rippleui/dist/css/styles.css';
 import Alert from '@/components/ui/Alert'
+import ConfigList from '@/components/gol/ConfigList'
+import PlayButton from '@/components/gol/PlayButton'
 
 function Point(x,y, id){
     this.x = x;
@@ -235,36 +237,7 @@ async function getMapNamesPromise() {
 
 
 
-function ConfigList({mapNames, setmapData, setconfigNum}) {
-    async function configButtonClick(e) {
 
-        const parELe = e.target.parentElement;
-        console.log('clicked mapp button', e.target.parentElement);
-        console.log(parELe.id, '<fetching id');
-        const mapID = parELe.id;
-        const resp = await fetch(`http://localhost:3000/api/gol/${parELe.id}`).catch((e) => {
-            console.error('error in getting map with id', id, 'error:', e);
-        });
-        const data = await resp.json();
-        console.log(data);
-        setmapData(data);
-        setconfigNum(mapID);
-    }
-    //156 index configs
-
-    const lists = [];
-    for (let configIndex = 0; configIndex < 156; configIndex++) {
-        lists.push(
-            <li key={configIndex} id={configIndex}>map number: {configIndex} name: {mapNames[configIndex].name} period: {mapNames[configIndex].period} link: {mapNames[configIndex].mapLink}
-                <button onClick={configButtonClick}> select </button>
-            </li>
-
-
-        );
-    }
-    const finalList = <ul>{lists.map((li) => li)}</ul>
-    return finalList;
-}
 
 function AnimationBox(){
     const box = useRef(null);
@@ -296,12 +269,14 @@ function AnimationBox(){
 
     useEffect(
         ()=>{
-            if(animationPlay !== 1)
-                {
+            if(animationPlay !== 1){
+                
                 if(showAlert===true || mapFitAlert===true){
                     setshowAlert(false)
                     setmapFitAlert(false);
-
+                }
+                if (globalStopAnimation === 1) {
+                    globalStopAnimation = 0;
                 }
                 const canvas = box.current;
                 const ctx = canvas.getContext('2d');
@@ -411,36 +386,7 @@ function AnimationBox(){
         function StopButton({ stopButtonClick }) {
             return <button onClick={stopButtonClick}> stop </button>
         }
-
-        async function playButtonClick(){
-            if (globalStopAnimation===1){
-                globalStopAnimation=0;
-            }
-            if (animationPlay!==1){
-                let animationPlay = 1;
-                setanimationPlay(animationPlay);
-                console.log(animationPlay, 'animation play b4 exec');
-                console.log(`randuringAnimation before animation should be 0${ranDuringAnimation.current}`)
-
-                await execute(points, ctx, gridDimensions.x, gridDimensions.y, speed.current, numIter.current);
-
-                animationPlay = 0;
-                setanimationPlay(animationPlay);
-                console.log(animationPlay, 'animation play after exec');
-                console.log(`randuringAnimation after animation should be 1 ${ranDuringAnimation.current}`)
-
-                const rerun = manualReRun + 1;
-                setmanualReRun(rerun);
-                // this causes 
-                console.log('play button points:', points, ctx, gridDimensions);
-                console.log('playButton speed', speed.current);
-            }
-            
-        }
-
-        function PlayButton({playButtonClick}){
-            return <button  onClick={playButtonClick}> play </button>
-        }
+        
 
         
 
@@ -502,45 +448,13 @@ function AnimationBox(){
             return iterList 
         }
 
-        
-        // async function configButtonClick(e) {
-
-        //     const parELe = e.target.parentElement;
-        //     console.log('clicked mapp button', e.target.parentElement);
-        //     console.log(parELe.id, '<fetching id');
-        //     const mapID = parELe.id;
-        //     const resp = await fetch(`http://localhost:3000/api/gol/${parELe.id}`).catch((e) => {
-        //         console.error('error in getting map with id', id, 'error:', e);
-        //     });
-        //     const data = await resp.json();
-        //     console.log(data);
-        //     setmapData(data);
-        //     setconfigNum(mapID);
-        // }
-
-        // function ConfigList({ configButtonClick}) {
-        //     //156 index configs
-        //     console.log(mapNames, 'mapNames in config list');
-        //     const lists = [];
-        //     for (let configIndex = 0; configIndex < 156; configIndex++) {
-        //         lists.push(
-        //                 <li key={configIndex} id={configIndex}>map number: {configIndex} name: {mapNames[configIndex].name} period: {mapNames[configIndex].period} link: {mapNames[configIndex].mapLink}
-        //                     <button onClick={configButtonClick}> select </button>
-        //                 </li>
-
-
-        //         );
-        //     }
-        //     const finalList = <ul>{lists.map((li) => li)}</ul>
-        //     return finalList;
-        // }
-
-        
         const animationElement = <div> 
             {/* <button onClick={playButton}> play </button> */}
             {showAlert && <Alert Title={'too fast!'} Long={'stop animation to see your changes'} cancelAlert={()=> cancelAlert(setshowAlert)}/>}
             {mapFitAlert && <Alert Title={'map too large'} Long={'try reducing map size'} cancelAlert={()=>{cancelAlert(setmapFitAlert)}}/>}
-            <PlayButton playButtonClick={playButtonClick}/>
+            <PlayButton points={points} ctx={ctx} gridDimensions={gridDimensions} speed={speed} numIter={numIter} 
+            ranDuringAnimation={ranDuringAnimation} animationPlay={animationPlay} setanimationPlay={setanimationPlay} 
+            execute={execute}  setmanualReRun={setmanualReRun} manualReRun={manualReRun}/>
             <StopButton stopButtonClick={stopButtonClick}/>
             <SizeButton sizeButtonClick={sizeButtonClick}/>
             <SpeedButton speedButtonClick={speedButtonClick}/>
@@ -584,10 +498,10 @@ error message when map does fit screen, reduce scale notification
 
 easy:
 
+refactor to clean up code
 centre images
 lower scales options.
-highlight selected options
-design page
+design page - disply map name when playing, highlight selected options
 create route to gol page on main life page
 
 user experience!
@@ -597,4 +511,5 @@ if time allows:
 drag and drop combine two configs in the same canvas!! 
 click to add point
 maybe input field and option for parameters
+creat an option to change rule set - HighLife - an alternate set of rules similar to Conway's, but with the additional rule that 6 neighbors generates a birth. Most of the interest in this variant is due to the replicator
 */
