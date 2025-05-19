@@ -4,6 +4,7 @@ import 'rippleui/dist/css/styles.css';
 import Alert from '@/components/ui/Alert'
 import ConfigList from '@/components/gol/ConfigList'
 import PlayButton from '@/components/gol/PlayButton'
+import SizeButton from '@/components/gol/SizeButton'
 
 function Point(x,y, id){
     this.x = x;
@@ -377,38 +378,17 @@ function AnimationBox(){
         function cancelAlert(setVariable){
             setVariable(false);
         }
-        function stopButtonClick(){
-            globalStopAnimation=1;
-            // const rerun = manualReRun + 1;
-            // setmanualReRun(rerun); 
-        }
-            
-        function StopButton({ stopButtonClick }) {
+    
+        function StopButton() {
+            function stopButtonClick(){
+                globalStopAnimation=1;    
+            }
             return <button onClick={stopButtonClick}> stop </button>
         }
         
-
         
-
-        function sizeButtonClick(size){
-            console.log('size Button clicked!');
-            const newSize = size;
-            setsize(newSize);
-        }
         
-        function SizeButton({sizeButtonClick}){
-            const sizeOptions = [10,20,30,40,50];
-            const sizeList = 
-            <div>
-                <ul>
-                    {sizeOptions.map((size) => (
-                        <li key={size} id={size}> <button onClick={() => sizeButtonClick(size)}> change size {size}</button> </li>
-                    ))}
-                </ul>
-            </div>
-            
-            return sizeList
-        }
+        
 
         function speedButtonClick(newSpeed){
             console.log('speed button clicked', newSpeed);
@@ -455,8 +435,8 @@ function AnimationBox(){
             <PlayButton points={points} ctx={ctx} gridDimensions={gridDimensions} speed={speed} numIter={numIter} 
             ranDuringAnimation={ranDuringAnimation} animationPlay={animationPlay} setanimationPlay={setanimationPlay} 
             execute={execute}  setmanualReRun={setmanualReRun} manualReRun={manualReRun}/>
-            <StopButton stopButtonClick={stopButtonClick}/>
-            <SizeButton sizeButtonClick={sizeButtonClick}/>
+            <StopButton />
+            <SizeButton setsize={setsize}/>
             <SpeedButton speedButtonClick={speedButtonClick}/>
             <IterButton iterButtonClick = {iterButtonClick}/>
             {canvas} 
