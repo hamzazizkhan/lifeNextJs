@@ -5,158 +5,19 @@ import Alert from '@/components/ui/Alert'
 import ConfigList from '@/components/gol/ConfigList'
 import PlayButton from '@/components/gol/PlayButton'
 import SizeButton from '@/components/gol/SizeButton'
+import SpeedButton from '@/components/gol/SpeedButton'
+import IterButton from '@/components/gol/IterButton'
+import Point from '@/components/gol/utils/Point'
+import blinker from '@/components/gol/utils/blinker'
+import findCentroidPoint from '@/components/gol/utils/findCentroidPoint'
+import findIndex from '@/components/gol/utils/findIndex'
+import populate from '@/components/gol/utils/populate'
+import formNeighs from '@/components/gol/utils/formNeighs'
+import sleep from '@/components/gol/utils/sleep'
+import plotpts from '@/components/gol/utils/plotpts'
+import initPointsConfig from '@/components/gol/utils/initPointsConfig'
+import getMapNamesPromise from '@/components/gol/lib/getMapNamesPromise'
 
-function Point(x,y, id){
-    this.x = x;
-    this.y = y;
-    this.status = 0;
-    this.id = id;
-    this.neighs = [];
-    this.color = "rgba(59, 224, 26, 0.68)";
-    this.point = [x, y];
-
-    this.draw = function(ctx){
-        if(this.status===1){
-            ctx.fillStyle = this.color;
-            ctx.fillRect(x, y, 1, 1);
-            ctx.fill();
-            // log('pt',pt);
-        }
-    }
-    // number of living cells around cell in 8 neighborhood
-    this.lives = function(points) {
-        let live = 0;
-        // console.log('neighs',this.neighs, 'point',this.x,this.y);
-        for (const neigh of this.neighs){
-            const curr = points[neigh];
-            // log('this', this);
-            // console.log('neigh,', neigh);
-            if (curr.status===1){
-                live++;
-            }
-        }
-        return live;
-    }
-    // changes status f cell in nieghborhood
-    this.changeStatus = function(points){
-        let live = this.lives(points);
-        // log('live', live, this.x, this.y);
-
-        if (this.status===1){
-            if (live<2){
-                const status = 0;
-                return status;
-            }
-            else if (live>=2 && live<=3){
-                return 1;
-            }
-            else if (live>=4){
-                const status = 0;
-                return status;
-            }
-            }else{
-            if (live===3){
-                const status = 1;
-                return status;
-            }
-        }
-    }
-    // status = 1, < 2 alive, status = 0
-    // status = 1, >= 2 <= 3 alive, status = same
-    // status = 1, >= 3 alive, status = 0
-    // status = 0, >= 3 alive, status = 1
-}
-
-// initial config - blinker
-function blinker(centroidptIndex, points){
-    points[centroidptIndex-1].status = 1;
-    points[centroidptIndex].status = 1;
-    points[centroidptIndex+1].status = 1;
-}
-
-function findCentroidPoint(points, gridDimensions){
-    for (let pt =0;pt<  points.length; pt++){
-        if (points[pt].x===gridDimensions.centroidx && points[pt].y===gridDimensions.centroidy){
-            return pt;    
-        }
-    }
-    
-}
-
-const directions = [
-    [0, 1], [0, -1], [1, 0], [-1, 0],
-    [-1, -1], [1, -1], [-1, 1], [1, 1]]  // up, down, right, left, bottom left, bottom right, top left, top right
-
-// gives you the index of the matching point in points list
-function findIndex(x,y, gridDimensions){
-    // for (const ptID in points){
-    //     const x1 = points[ptID].point[0];
-    //     const y1 = points[ptID].point[1];
-    //     if (x1===x && y1===y){
-    //         return ptID;
-    //     }
-    // }
-    const maxy = gridDimensions.y;
-    const index = (maxy*x) +y
-    return index;
-}
-
-function populate(gridDimensions){
-    let points = [];
-    // populate
-    let id = 0;
-    for (let i = 0; i < gridDimensions.x; i++) {
-        for (let j = 0; j < gridDimensions.y; j++) {
-            let point = new Point(i, j, id);
-            // log('point', point);
-            points.push(point);
-            id++;
-        }
-    }
-    return points;
-}
-
-function formNeighs(points, gridDimensions){
-    //forming neighbours
-    let max = 0;
-    for (const pt of points) {
-        for (const d of directions) {
-            const newPoint = [pt.point[0] + d[0], pt.point[1] + d[1]];
-
-            // checking dimensions
-            if (newPoint[0] > gridDimensions.x -1 || newPoint[1] > gridDimensions.y -1) {
-                continue
-            } else if (newPoint[0] < 0 || newPoint[1] < 0) {
-                continue
-            }
-
-            const match = findIndex(newPoint[0], newPoint[1], gridDimensions);
-            if (match>=points.length){
-                console.log('match greater ', match, newPoint);
-            }
-            // const newID =  gridDimensions.x *(newPoint[1])+newPoint[1];
-            // if(newPoint[0]===0 || newPoint[1]===1){
-
-                // console.log(`${newPoint[0]},${newPoint[1]} realID ${match} newID ${newID}, gridx ${gridDimensions.x}`);
-            // }
-            // if(match===newID-1){
-            //     console.log('True');
-            // }
-            if (match !== null) {
-                pt.neighs.push(match);
-            }
-
-        }
-        
-    }
-
-}
-
-function sleep(ms) {
-    // console.log('sleep');
-    return new Promise(resolve => setTimeout(resolve, ms));
-
-}
 
 
 let globalStopAnimation = 0;
@@ -183,61 +44,6 @@ async function execute(points,  ctx, width, height, speed, end=10) {
     }
     return 
 }
-
-function plotpts(points, ctx){
-    for (let pt = 0; pt < points.length; pt++) {
-        // need two sets of points
-        points[pt].draw(ctx);
-    }
-}
-
-
-
-function initPointsConfig(cfg, points, gridDimensions){
-    const pos = cfg.positions;
-    console.log(cfg.rowCount, gridDimensions, 'rowcount, gridims');
-    if(cfg.rowCount>gridDimensions.x){
-        throw new Error('map does not fit in canvas plot ');
-    }
-
-    console.log('plotting',cfg.name, cfg.mapLink, cfg.rowCount, cfg.positions);
-    console.log('pointsARRAY');
-    console.log(points)
-    for(const p of pos){
-        const x = p.x;
-        const y = p.y;
-// find relationship between id and position. use that to index.
-        
-        const match = findIndex(x,y,gridDimensions);
-        points[match].status=1
-        if(match===null){
-            throw new Error('error in finding matching point in points array');
-        }
-        
-    }
-    return 1;
-}
-
-//=============================
-
-
-
-//=============================
-
-async function getMapNamesPromise() {
-    const url = 'http://localhost:3000/api/gol/names'
-    const req = new Request(url)
-    const resp = await fetch(req).catch((e) => {
-        console.error('could not get map names', e);
-    })
-    const mapNames = await resp.json();
-    console.log('map names', mapNames)
-    return mapNames;
-    
-}
-
-
-
 
 
 function AnimationBox(){
@@ -385,49 +191,7 @@ function AnimationBox(){
             }
             return <button onClick={stopButtonClick}> stop </button>
         }
-        
-        
-        
-        
-
-        function speedButtonClick(newSpeed){
-            console.log('speed button clicked', newSpeed);
-            speed.current = newSpeed;
-        }
-
-        function SpeedButton({speedButtonClick}){
-            const speedOptions = [1000, 800, 600, 400, 200, 100, 80];
-            const speedList =
-                <div>
-                    <ul>
-                        {speedOptions.map((speed) => (
-                            <li key={speed} id={speed}> <button onClick={() => speedButtonClick(speed)}> change speed {speed/1000} seconds</button> </li>
-                        ))}
-                    </ul>
-                </div>
-
-            return speedList 
-        }
-        
-        function iterButtonClick(newIter){
-            console.log('iter button clicked', newIter);
-            numIter.current = newIter;
-        }
-
-        function IterButton({iterButtonClick}){
-            const iterOptions = [10,20,40,50,80,100,200];
-            const iterList =
-                <div>
-                    <ul>
-                        {iterOptions.map((iter) => (
-                            <li key={iter} id={iter}> <button onClick={() => iterButtonClick(iter)}> change iter {iter} </button> </li>
-                        ))}
-                    </ul>
-                </div>
-
-            return iterList 
-        }
-
+    
         const animationElement = <div> 
             {/* <button onClick={playButton}> play </button> */}
             {showAlert && <Alert Title={'too fast!'} Long={'stop animation to see your changes'} cancelAlert={()=> cancelAlert(setshowAlert)}/>}
@@ -437,8 +201,8 @@ function AnimationBox(){
             execute={execute}  setmanualReRun={setmanualReRun} manualReRun={manualReRun}/>
             <StopButton />
             <SizeButton setsize={setsize}/>
-            <SpeedButton speedButtonClick={speedButtonClick}/>
-            <IterButton iterButtonClick = {iterButtonClick}/>
+            <SpeedButton speed={speed}/>
+            <IterButton numIter = {numIter}/>
             {canvas} 
             {mapNames && <ConfigList mapNames={mapNames} setconfigNum={setconfigNum} setmapData={setmapData}/> }
             </div>
@@ -452,7 +216,6 @@ export default function Golpage(){
         <div>
             <p> this is the conway GOL page </p>
             <AnimationBox/>      
-                 
         </div>
    );
 }
@@ -474,11 +237,12 @@ pop up to wait for animation to finish to see new settings.
 display map name, period number.
 seperate out components - make cleaner and mroe efficient so that you dont make un needed fetch requests to json data for map names
 error message when map does fit screen, reduce scale notification
+refactor to clean up code
 ==============================================================
 
 easy:
 
-refactor to clean up code
+
 centre images
 lower scales options.
 design page - disply map name when playing, highlight selected options
