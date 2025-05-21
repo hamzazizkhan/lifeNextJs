@@ -1,3 +1,4 @@
+import Button from '@/components/ui/Button'
 export default function PlayButton({points, ctx, gridDimensions, speed, numIter, manualReRun,
     setanimationPlay, setmanualReRun, execute,   animationPlay}) {
     async function playButtonClick() {
@@ -22,5 +23,5 @@ export default function PlayButton({points, ctx, gridDimensions, speed, numIter,
             // console.log('playButton speed', speed.current);
         }
     }
-    return <button onClick={playButtonClick}> play </button>
+    return <Button onClick={playButtonClick} type={"btn btn-secondary"} text={"play"}/>
 }

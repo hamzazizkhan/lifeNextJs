@@ -1,5 +1,7 @@
 import { useRef } from "react";
 
+import Button from '@/components/ui/Button'
+import Input from '@/components/ui/Input'
 export default function SizeButton({setsize, setsizeChange, sizeChange}) {
     function handleSizeChange(e) {
         console.log('size change!');
@@ -16,9 +18,9 @@ export default function SizeButton({setsize, setsizeChange, sizeChange}) {
 
     const sizeInput = 
     <div>
-        <label> change size: </label>
-        <input type="number" placeholder="10" onChange={handleSizeChange}></input>
-        <button onClick={sizeButtonClick}> change </button>
+        <label>size: </label>
+        <Input type="number" className={"input-ghost-warning input"} placeholder="10" onChange={handleSizeChange} />
+        <Button onClick={sizeButtonClick} text={"change"} type={"btn btn-warning"} />
     </div>
 
     return sizeInput

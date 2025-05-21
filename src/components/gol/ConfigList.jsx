@@ -1,3 +1,5 @@
+
+import Button from '@/components/ui/Button'
 export default function ConfigList({ mapNames, setmapData, setconfigNum }) {
     async function configButtonClick(e) {
 
@@ -19,7 +21,7 @@ export default function ConfigList({ mapNames, setmapData, setconfigNum }) {
     for (let configIndex = 0; configIndex < 156; configIndex++) {
         lists.push(
             <li key={configIndex} id={configIndex}>map number: {configIndex} name: {mapNames[configIndex].name} period: {mapNames[configIndex].period} link: {mapNames[configIndex].mapLink}
-                <button onClick={configButtonClick}> select </button>
+                <Button onClick={configButtonClick} text={"select"} type={"btn btn-success"} />
             </li>
 
 

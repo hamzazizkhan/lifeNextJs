@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import 'rippleui/dist/css/styles.css';
 import Alert from '@/components/ui/Alert'
+import Button from '@/components/ui/Button'
 import ConfigList from '@/components/gol/ConfigList'
 import PlayButton from '@/components/gol/PlayButton'
 import SizeButton from '@/components/gol/SizeButton'
@@ -17,6 +18,8 @@ import sleep from '@/components/gol/utils/sleep'
 import plotpts from '@/components/gol/utils/plotpts'
 import initPointsConfig from '@/components/gol/utils/initPointsConfig'
 import getMapNamesPromise from '@/components/gol/lib/getMapNamesPromise'
+import Card from '@/components/ui/Card'
+import Settings from '@/components/gol/Settings'
 
 let globalStopAnimation = 0;
 async function execute(points,  ctx, width, height, speed, gridDimensions, end=10) {
@@ -193,21 +196,22 @@ function AnimationBox(){
             function stopButtonClick(){
                 globalStopAnimation=1;    
             }
-            return <button onClick={stopButtonClick}> stop </button>
+            return <Button onClick={stopButtonClick} text={"stop"} type={"btn btn-error"}/>
         }
-    
+        
+        const PlayButt = <PlayButton points={points} ctx={ctx} gridDimensions={gridDimensions} speed={speed} numIter={numIter}
+            ranDuringAnimation={ranDuringAnimation} animationPlay={animationPlay} setanimationPlay={setanimationPlay}
+            execute={execute} setmanualReRun={setmanualReRun} manualReRun={manualReRun} />
+        const StopBut = <StopButton/>
+        const SizeButt = <SizeButton setsize={setsize} setsizeChange={setsizeChange} sizeChange={sizeChange} />
+        const SpeedButt = <SpeedButton setspeedChangeInput={setspeedChangeInput} speedChangeInput={speedChangeInput} setspeed={setspeed} />
+        const IterButt = <IterButton setnumIterChange={setnumiterChange} iterChangeInput={iterChangeInput} setiterChangeInput={setiterChangeInput} />
+
         const animationElement = <div> 
             {/* <button onClick={playButton}> play </button> */}
             {showAlert && <Alert Title={'too fast!'} Long={'stop animation to see your changes'} cancelAlert={()=> cancelAlert(setshowAlert)}/>}
             {mapFitAlert && <Alert Title={'map too large'} Long={'try reducing map size'} cancelAlert={()=>{cancelAlert(setmapFitAlert)}}/>}
-            
-            <PlayButton points={points} ctx={ctx} gridDimensions={gridDimensions} speed={speed} numIter={numIter} 
-            ranDuringAnimation={ranDuringAnimation} animationPlay={animationPlay} setanimationPlay={setanimationPlay} 
-            execute={execute}  setmanualReRun={setmanualReRun} manualReRun={manualReRun}/>
-            <StopButton />
-            <SizeButton setsize={setsize} setsizeChange={setsizeChange} sizeChange={sizeChange}/>
-            <SpeedButton setspeedChangeInput={setspeedChangeInput} speedChangeInput={speedChangeInput} setspeed={setspeed}/>
-            <IterButton setnumIterChange={setnumiterChange} iterChangeInput={iterChangeInput} setiterChangeInput={setiterChangeInput}/>
+            <Settings buttons={[SizeButt, SpeedButt, IterButt, PlayButt, StopBut]}/> 
             {canvas} 
             {mapNames && <ConfigList mapNames={mapNames} setconfigNum={setconfigNum} setmapData={setmapData}/> }
             </div>
@@ -249,8 +253,12 @@ notification for changes during animation
 ==============================================================
 
 easy:
-lower scales options.
-design page - disply map name when playing, highlight selected options, theme settings
+design page:
+    - display settings when playing(map,speed, numiter) 
+    - make look nice
+theme settings:
+    - purple and white
+    - trailing effect
 create route to gol page on main life page
 
 if time allows:

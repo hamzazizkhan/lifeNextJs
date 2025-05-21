@@ -1,3 +1,6 @@
+
+import Button from '@/components/ui/Button'
+import Input from '@/components/ui/Input'
 export default function SpeedButton({   setspeedChangeInput, speedChangeInput, setspeed}) {
     function handleSpeedChange(e){
         const newSpeed = e.target.value;
@@ -10,9 +13,9 @@ export default function SpeedButton({   setspeedChangeInput, speedChangeInput, s
     }
     const speedInput =
             <div>
-                <label> change speed: </label>
-                <input type="number" placeholder="1" onChange={handleSpeedChange}></input>
-                <button onClick={speedButtonClick}> change </button>
+                <label>speed: </label>
+                <Input type="number" className={"input-ghost-warning input"} placeholder="100" onChange={handleSpeedChange}/>
+                <Button onClick={speedButtonClick} text={"change"} type={"btn btn-warning"} />
             </div>
 
         return speedInput  

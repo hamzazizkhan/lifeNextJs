@@ -1,3 +1,6 @@
+import Button from '@/components/ui/Button'
+
+import Input from '@/components/ui/Input'
 export default function IterButton({setnumIterChange, iterChangeInput, setiterChangeInput}) {
     function handleIterChange(e){
         const iterChange = e.target.value;
@@ -11,9 +14,9 @@ export default function IterButton({setnumIterChange, iterChangeInput, setiterCh
     }
     const iterInput =
         <div>
-            <label> change number of iterations: </label>
-            <input type="number" placeholder="1" onChange={handleIterChange}></input>
-            <button onClick={iterButtonClick}> change </button>
+            <label> number of iterations: </label>
+            <Input type="number" placeholder="200" onChange={handleIterChange} className={"input-ghost-warning input"}/>
+            <Button onClick={iterButtonClick} text={"change"} type={"btn btn-warning"}/>
         </div>
 
     return iterInput
