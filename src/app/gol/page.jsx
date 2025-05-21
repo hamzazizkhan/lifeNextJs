@@ -18,10 +18,8 @@ import plotpts from '@/components/gol/utils/plotpts'
 import initPointsConfig from '@/components/gol/utils/initPointsConfig'
 import getMapNamesPromise from '@/components/gol/lib/getMapNamesPromise'
 
-
-
 let globalStopAnimation = 0;
-async function execute(points,  ctx, width, height, speed, end=10) {
+async function execute(points,  ctx, width, height, speed, gridDimensions, end=10) {
     var points2 = [];
     for (let i = 0; i < end; i++) {
         if (globalStopAnimation===1){return;}
@@ -40,6 +38,8 @@ async function execute(points,  ctx, width, height, speed, end=10) {
         points = points2;
         var points2 = [];
         const hello = await sleep(speed);
+        // ctx.clearRect(0,0,width,height)
+        // ctx.translate(gridDimensions.centroidx, gridDimensions.centroidy);
         // console.log('im running');
     }
     return 
@@ -102,6 +102,7 @@ function AnimationBox(){
                 gridDimensions.centroidy = Math.floor(gridDimensions.y / 2);
 
                 ctx.scale(size, size);
+                // ctx.translate(gridDimensions.centroidx, gridDimensions.centroidy);
 
                 ctx.fillStyle = "rgb(0, 0, 0)";
                 ctx.fillRect(0, 0, width, height);
@@ -152,7 +153,7 @@ function AnimationBox(){
                     
                 }
                 const timetoplot = performance.now(); 
-                plotpts(points, ctx);
+                plotpts(points, ctx, gridDimensions);
                 const timetoplotEnd = performance.now();
                 console.log('time taken to plot config', timetoplotEnd- timetoplot);
 
@@ -241,19 +242,20 @@ refactor to clean up code
 ==============================================================
 
 easy:
-
-
 centre images
 lower scales options.
-design page - disply map name when playing, highlight selected options
+design page - disply map name when playing, highlight selected options, theme settings
 create route to gol page on main life page
 
 user experience!
-theme settings
+
 
 if time allows:
 drag and drop combine two configs in the same canvas!! 
 click to add point
 maybe input field and option for parameters
 creat an option to change rule set - HighLife - an alternate set of rules similar to Conway's, but with the additional rule that 6 neighbors generates a birth. Most of the interest in this variant is due to the replicator
+
+get relative points - x,y - centroidx, centroidy
+plot initial positions : centroid + relative position
 */

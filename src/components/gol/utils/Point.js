@@ -10,14 +10,16 @@ export default class Point{
     }
     
 
-    draw = function(ctx) {
+    draw = function(ctx, gridDimensions) {
         if (this.status === 1) {
             ctx.fillStyle = this.color;
             ctx.fillRect(this.x, this.y, 1, 1);
+            // ctx.translate(gridDimensions.centroidx, gridDimensions.centroidy);
             ctx.fill();
             // log('pt',pt);
         }
     }
+    
     // number of living cells around cell in 8 neighborhood
     lives = function(points) {
         let live = 0;

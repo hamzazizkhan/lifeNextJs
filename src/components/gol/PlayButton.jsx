@@ -1,4 +1,4 @@
-export default function PlayButton({ranDuringAnimation, points, ctx, gridDimensions, speed, numIter, manualReRun,
+export default function PlayButton({points, ctx, gridDimensions, speed, numIter, manualReRun,
     setanimationPlay, setmanualReRun, execute,   animationPlay}) {
     async function playButtonClick() {
        
@@ -8,7 +8,7 @@ export default function PlayButton({ranDuringAnimation, points, ctx, gridDimensi
             // console.log(animationPlay, 'animation play b4 exec');
             // console.log(`randuringAnimation before animation should be 0${ranDuringAnimation.current}`)
 
-            await execute(points, ctx, gridDimensions.x, gridDimensions.y, speed.current, numIter.current);
+            await execute(points, ctx, gridDimensions.x, gridDimensions.y, speed.current, gridDimensions, numIter.current);
 
             animationPlay = 0;
             setanimationPlay(animationPlay);
