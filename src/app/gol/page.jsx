@@ -58,6 +58,7 @@ function AnimationBox(){
     const numIter = useRef(50);
     const speed = useRef(1000);
     const [size, setsize] = useState(20);
+    const [sizeChange, setsizeChange] = useState(null);
     const [points, setPoints] = useState(null);
     const [ctx, setCtx] = useState(null);
     const [gridDimensions, setgridDimensions] = useState(null);
@@ -201,7 +202,7 @@ function AnimationBox(){
             ranDuringAnimation={ranDuringAnimation} animationPlay={animationPlay} setanimationPlay={setanimationPlay} 
             execute={execute}  setmanualReRun={setmanualReRun} manualReRun={manualReRun}/>
             <StopButton />
-            <SizeButton setsize={setsize}/>
+            <SizeButton setsize={setsize} setsizeChange={setsizeChange} sizeChange={sizeChange}/>
             <SpeedButton speed={speed}/>
             <IterButton numIter = {numIter}/>
             {canvas} 
@@ -239,16 +240,13 @@ display map name, period number.
 seperate out components - make cleaner and mroe efficient so that you dont make un needed fetch requests to json data for map names
 error message when map does fit screen, reduce scale notification
 refactor to clean up code
+centre images
 ==============================================================
 
 easy:
-centre images
 lower scales options.
 design page - disply map name when playing, highlight selected options, theme settings
 create route to gol page on main life page
-
-user experience!
-
 
 if time allows:
 drag and drop combine two configs in the same canvas!! 
@@ -256,6 +254,4 @@ click to add point
 maybe input field and option for parameters
 creat an option to change rule set - HighLife - an alternate set of rules similar to Conway's, but with the additional rule that 6 neighbors generates a birth. Most of the interest in this variant is due to the replicator
 
-get relative points - x,y - centroidx, centroidy
-plot initial positions : centroid + relative position
 */

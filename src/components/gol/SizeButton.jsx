@@ -1,19 +1,25 @@
-export default function SizeButton({setsize}) {
-    function sizeButtonClick(size) {
-        // console.log('size Button clicked!');
-        const newSize = size;
+import { useRef } from "react";
+
+export default function SizeButton({setsize, setsizeChange, sizeChange}) {
+    function handleSizeChange(e) {
+        console.log('size change!');
+        console.log(e.target.value);
+
+        const newSize = e.target.value;
+        setsizeChange(newSize);
+    } 
+    function sizeButtonClick(e) {
+        console.log('size Button clicked!');
+        const newSize = sizeChange;
         setsize(newSize);
     }
 
-    const sizeOptions = [10, 20, 30, 40, 50];
-    const sizeList =
-        <div>
-            <ul>
-                {sizeOptions.map((size) => (
-                    <li key={size} id={size}> <button onClick={() => sizeButtonClick(size)}> change size {size}</button> </li>
-                ))}
-            </ul>
-        </div>
+    const sizeInput = 
+    <div>
+        <label> change size: </label>
+        <input type="number" placeholder="10" onChange={handleSizeChange}></input>
+        <button onClick={sizeButtonClick}> change </button>
+    </div>
 
-    return sizeList
+    return sizeInput
 }
