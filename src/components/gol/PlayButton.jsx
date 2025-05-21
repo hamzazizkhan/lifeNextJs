@@ -8,7 +8,7 @@ export default function PlayButton({points, ctx, gridDimensions, speed, numIter,
             // console.log(animationPlay, 'animation play b4 exec');
             // console.log(`randuringAnimation before animation should be 0${ranDuringAnimation.current}`)
 
-            await execute(points, ctx, gridDimensions.x, gridDimensions.y, speed.current, gridDimensions, numIter.current);
+            await execute(points, ctx, gridDimensions.x, gridDimensions.y, speed, gridDimensions, numIter);
 
             animationPlay = 0;
             setanimationPlay(animationPlay);

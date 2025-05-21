@@ -1,17 +1,21 @@
-export default function IterButton({ numIter }) {
-    function iterButtonClick(newIter) {
-        // console.log('iter button clicked', newIter);
-        numIter.current = newIter;
+export default function IterButton({setnumIterChange, iterChangeInput, setiterChangeInput}) {
+    function handleIterChange(e){
+        const iterChange = e.target.value;
+        setiterChangeInput(iterChange);
     }
-    const iterOptions = [10, 20, 40, 50, 80, 100, 200];
-    const iterList =
+    
+    function iterButtonClick() {
+        // console.log('iter button clicked', newIter);
+        const numIter = iterChangeInput;
+        setnumIterChange(numIter);
+    }
+    const iterInput =
         <div>
-            <ul>
-                {iterOptions.map((iter) => (
-                    <li key={iter} id={iter}> <button onClick={() => iterButtonClick(iter)}> change iter {iter} </button> </li>
-                ))}
-            </ul>
+            <label> change number of iterations: </label>
+            <input type="number" placeholder="1" onChange={handleIterChange}></input>
+            <button onClick={iterButtonClick}> change </button>
         </div>
 
-    return iterList
+    return iterInput
+    
 }
