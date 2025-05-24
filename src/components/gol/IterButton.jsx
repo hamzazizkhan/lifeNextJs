@@ -5,6 +5,7 @@ export default function IterButton({setnumIterChange, iterChangeInput, setiterCh
     function handleIterChange(e){
         const iterChange = e.target.value;
         setiterChangeInput(iterChange);
+        console.log('iter change!',iterChange );
     }
     
     function iterButtonClick() {
@@ -16,7 +17,7 @@ export default function IterButton({setnumIterChange, iterChangeInput, setiterCh
         <div>
             <label> number of iterations: </label>
             <Input type="number" placeholder="200" onChange={handleIterChange} className={"input-ghost-warning input"}/>
-            <Button onClick={iterButtonClick} text={"change"} type={"btn btn-warning"}/>
+            {/* <Button onClick={iterButtonClick} text={"change"} type={"btn btn-warning"}/> */}
         </div>
 
     return iterInput

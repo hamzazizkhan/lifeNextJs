@@ -15,7 +15,7 @@ export default function SpeedButton({   setspeedChangeInput, speedChangeInput, s
             <div>
                 <label>speed: </label>
                 <Input type="number" className={"input-ghost-warning input"} placeholder="100" onChange={handleSpeedChange}/>
-                <Button onClick={speedButtonClick} text={"change"} type={"btn btn-warning"} />
+                {/* <Bsetsize,sizeChange, setspeed,speedChangeInput, setnumiterChange, iterChangeInputButton onClick={speedButtonClick} text={"change"} type={"btn btn-warning"} /> */}
             </div>
 
         return speedInput  

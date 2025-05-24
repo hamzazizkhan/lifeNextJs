@@ -20,6 +20,8 @@ import initPointsConfig from '@/components/gol/utils/initPointsConfig'
 import getMapNamesPromise from '@/components/gol/lib/getMapNamesPromise'
 import Card from '@/components/ui/Card'
 import Settings from '@/components/gol/Settings'
+import LeftDrawer from '@/components/ui/LeftDrawer' 
+import RightDrawer from '@/components/ui/RightDrawer' 
 
 let globalStopAnimation = 0;
 async function execute(points,  ctx, width, height, speed, gridDimensions, end=10) {
@@ -58,11 +60,11 @@ function AnimationBox(){
     const [showAlert, setshowAlert] = useState(false);
     const [mapFitAlert, setmapFitAlert] = useState(false);
     const [animationPlay, setanimationPlay] = useState(0);
-    const [numIter, setnumiterChange] = useState(50);
+    const [numIter, setnumiterChange] = useState(200);
     const [iterChangeInput, setiterChangeInput] = useState(50);
-    const [speed, setspeed] = useState(1000);
+    const [speed, setspeed] = useState(100);
     const [speedChangeInput, setspeedChangeInput] = useState(1000);
-    const [size, setsize] = useState(20);
+    const [size, setsize] = useState(10);
     const [sizeChange, setsizeChange] = useState(20);
     const [points, setPoints] = useState(null);
     const [ctx, setCtx] = useState(null);
@@ -70,6 +72,7 @@ function AnimationBox(){
     const [configNum, setconfigNum] = useState(null);
     const [mapData, setmapData] = useState(null);
     const [mapNames, setmapNames] = useState(false);
+    const [mapSearchValue, setMapSearchValue] = useState(null);
    
     useEffect(()=>{
         async function getMapNamesData(){
@@ -175,7 +178,7 @@ function AnimationBox(){
                 setgridDimensions(gridDimensions);
                 setCtx(ctx);
                 setPoints(points);
-                console.log(`useEffect ran again. values: size ${size}, speed ${speed}, map num ${configNum}`);
+                console.log(`useEffect ran again. values: size ${size}, speed ${speed}, map num ${configNum} iter ${numIter}`);
             }else{
                 const woot =1;
                 ranDuringAnimation.current  = woot;
@@ -188,33 +191,44 @@ function AnimationBox(){
         }
         ,[configNum, size,   manualReRun, speed, size, numIter]);
 
-        function cancelAlert(setVariable){
-            setVariable(false);
-        }
-    
-        function StopButton() {
-            function stopButtonClick(){
-                globalStopAnimation=1;    
-            }
-            return <Button onClick={stopButtonClick} text={"stop"} type={"btn btn-error"}/>
-        }
-        
-        const PlayButt = <PlayButton points={points} ctx={ctx} gridDimensions={gridDimensions} speed={speed} numIter={numIter}
-            ranDuringAnimation={ranDuringAnimation} animationPlay={animationPlay} setanimationPlay={setanimationPlay}
-            execute={execute} setmanualReRun={setmanualReRun} manualReRun={manualReRun} />
-        const StopBut = <StopButton/>
-        const SizeButt = <SizeButton setsize={setsize} setsizeChange={setsizeChange} sizeChange={sizeChange} />
-        const SpeedButt = <SpeedButton setspeedChangeInput={setspeedChangeInput} speedChangeInput={speedChangeInput} setspeed={setspeed} />
-        const IterButt = <IterButton setnumIterChange={setnumiterChange} iterChangeInput={iterChangeInput} setiterChangeInput={setiterChangeInput} />
+    // useEffect(()=>{
+    //     for (ele of mapNames){
 
-        const animationElement = <div> 
-            {/* <button onClick={playButton}> play </button> */}
-            {showAlert && <Alert Title={'too fast!'} Long={'stop animation to see your changes'} cancelAlert={()=> cancelAlert(setshowAlert)}/>}
-            {mapFitAlert && <Alert Title={'map too large'} Long={'try reducing map size'} cancelAlert={()=>{cancelAlert(setmapFitAlert)}}/>}
-            <Settings buttons={[SizeButt, SpeedButt, IterButt, PlayButt, StopBut]}/> 
-            {canvas} 
-            {mapNames && <ConfigList mapNames={mapNames} setconfigNum={setconfigNum} setmapData={setmapData}/> }
-            </div>
+    //     }
+    // }, [mapSearchValue])
+    function cancelAlert(setVariable){
+        setVariable(false);
+    }
+
+    function StopButton() {
+        function stopButtonClick(){
+            globalStopAnimation=1;    
+        }
+        return <Button onClick={stopButtonClick} text={"stop"} type={"btn btn-error"}/>
+    }
+    
+    const PlayButt = <PlayButton points={points} ctx={ctx} gridDimensions={gridDimensions} speed={speed} numIter={numIter}
+        ranDuringAnimation={ranDuringAnimation} animationPlay={animationPlay} setanimationPlay={setanimationPlay}
+        execute={execute} setmanualReRun={setmanualReRun} manualReRun={manualReRun} />
+    const StopBut = <StopButton/>
+    const SizeButt = <SizeButton setsize={setsize} setsizeChange={setsizeChange} sizeChange={sizeChange} />
+    const SpeedButt = <SpeedButton setspeedChangeInput={setspeedChangeInput} speedChangeInput={speedChangeInput} setspeed={setspeed} />
+    const IterButt = <IterButton setnumIterChange={setnumiterChange} iterChangeInput={iterChangeInput} setiterChangeInput={setiterChangeInput} />
+
+    const animationElement = <div> 
+        {/* <button onClick={playButton}> play </button> */}
+        {showAlert && <Alert Title={'too fast!'} Long={'stop animation to see your changes'} cancelAlert={()=> cancelAlert(setshowAlert)}/>}
+        {mapFitAlert && <Alert Title={'map too large'} Long={'try reducing map size'} cancelAlert={()=>{cancelAlert(setmapFitAlert)}}/>}
+        {/* <Settings buttons={[SizeButt, SpeedButt, IterButt, PlayButt, StopBut]}/>  */}
+        {PlayButt}
+        {StopBut}
+        <LeftDrawer drawerName={'settings'} drawerHeading={'change settings'} buttons={[SizeButt, SpeedButt, IterButt]} setsize={setsize} 
+        sizeChange={sizeChange} setspeed={setspeed} speedChangeInput={speedChangeInput} setnumiterChange={setnumiterChange} iterChangeInput={iterChangeInput} />
+        <RightDrawer drawerName={'Choose Map'} drawerHeading={'Search for map'} setMapSearchValue={setMapSearchValue} mapNames={mapNames} setmapData={setmapData}
+         setconfigNum={setconfigNum} mapNameFilter={mapSearchValue}/>            
+        {canvas} 
+        {mapNames && <ConfigList mapNames={mapNames} setconfigNum={setconfigNum} setmapData={setmapData}/> }
+        </div>
     return animationElement;
 }
 
@@ -254,11 +268,28 @@ notification for changes during animation
 
 easy:
 design page:
-    - display settings when playing(map,speed, numiter) 
-    - make look nice
+Title
+- settings (left), play stop (centre), choose map (right), choose theme (top)
+    - left drawer - settings
+        - one save changes button
+        - range bar
+    - right drawer - choose map
+        - search bar by name
+            - autofill
+            - list of maps changes accordingly
+            - see full list of 156 maps
+        - filter by period
+            - period high to low
+        - list of maps ordered by name, scrollable
+    - top drawer - choose theme
+- animation in centre - elaborate.
+- recommended settings divider - maybe images of recommended maps and shit
+
 theme settings:
     - purple and white
     - trailing effect
+    - theme setting cahnges animation and page!
+
 create route to gol page on main life page
 
 if time allows:

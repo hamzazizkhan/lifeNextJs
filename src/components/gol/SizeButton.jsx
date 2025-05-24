@@ -20,7 +20,7 @@ export default function SizeButton({setsize, setsizeChange, sizeChange}) {
     <div>
         <label>size: </label>
         <Input type="number" className={"input-ghost-warning input"} placeholder="10" onChange={handleSizeChange} />
-        <Button onClick={sizeButtonClick} text={"change"} type={"btn btn-warning"} />
+        {/* <Button onClick={sizeButtonClick} text={"change"} type={"btn btn-warning"} /> */}
     </div>
 
     return sizeInput
