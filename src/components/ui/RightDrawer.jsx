@@ -1,12 +1,39 @@
+import Button from '@/components/ui/Button'
 import ConfigList from '@/components/gol/ConfigList'
-export default function ({ drawerName, drawerHeading, setMapSearchValue, mapNames, setmapData, setconfigNum, mapNameFilter }){
+import FullMaps from '@/components/gol/FullMaps'
+import FavMaps from '@/components/gol/FavMaps'
+import MapSearch from '@/components/gol/MapSearch'
+export default function ({ drawerName, drawerHeading, setMapSearchValue, mapNames, setmapData, setconfigNum, mapNameFilter, showFullMaps, setShowFullMaps, 
+    displayMapSearchValues, setDisplayMapSearchValues, showFavMaps, setShowFavMaps }){
     function handleMapSearchChange(e){
         const serachValue = e.target.value
         setMapSearchValue(serachValue);
         console.log('map search value changed to', serachValue);
+        if(serachValue.length===0){
+            setDisplayMapSearchValues(false);
+            setShowFullMaps(false);
+            setShowFavMaps(true);
+        }else{
+            setDisplayMapSearchValues(true);
+            setShowFavMaps(false);
+            setShowFullMaps(false);
+        }
     }
     // const val = mapNameFilter.toLowerCase();
     console.log('value of map name filter in Right drawer in lower case', mapNameFilter);
+    
+    function showAllMapsButton(){
+        setShowFullMaps(true);
+        setShowFavMaps(false);
+        setDisplayMapSearchValues(false);
+        console.log(showFullMaps, ' show full mpas in right drawer');
+    }
+    function showFavMapsButton() {
+        setShowFavMaps(true);
+        setShowFullMaps(false);
+        setDisplayMapSearchValues(false);
+        console.log(showFavMaps, ' show fav mpas in right drawer');
+    }
 
     return(
         <div>
@@ -20,7 +47,13 @@ export default function ({ drawerName, drawerHeading, setMapSearchValue, mapName
                     <div>
                         <h2 className="text-xl font-medium">{drawerHeading}</h2>
                         <input className="input py-1.5 my-3" placeholder="Type map name here..." onChange = {handleMapSearchChange} />
-                        <ConfigList mapNames={mapNames} setmapData={setmapData} setconfigNum={setconfigNum} mapNameFilter={mapNameFilter} />
+                        <Button type={"btn btn-primary"} text={'show all maps'} onClick={showAllMapsButton} />
+                        <Button type={"btn btn-primary"} text={'show fav maps'} onClick={showFavMapsButton} />
+                        {showFullMaps && <FullMaps mapNames={mapNames} setmapData={setmapData} setconfigNum={setconfigNum}/>}
+                        {showFavMaps && <FavMaps mapNames={mapNames} setmapData={setmapData} setconfigNum={setconfigNum} />}
+                        {displayMapSearchValues && <MapSearch mapNames={mapNames}  setmapData={setmapData} setconfigNum={setconfigNum} mapNameFilter={mapNameFilter}/>}
+                        {/* <ConfigList mapNames={mapNames} setmapData={setmapData} setconfigNum={setconfigNum} mapNameFilter={mapNameFilter} 
+                            showFullMaps={showFullMaps} setShowFullMaps={setShowFullMaps} displayMapSearchValues={displayMapSearchValues} showFavMaps={showFavMaps}/> */}
                     </div>
                     <div className="h-full flex flex-row justify-end items-end gap-2">
                         <button className="btn btn-ghost">Cancel</button>

@@ -1,6 +1,7 @@
 'use client';
 import { useState, useRef, useEffect } from "react";
 import 'rippleui/dist/css/styles.css';
+
 import Alert from '@/components/ui/Alert'
 import Button from '@/components/ui/Button'
 import ConfigList from '@/components/gol/ConfigList'
@@ -61,9 +62,9 @@ function AnimationBox(){
     const [mapFitAlert, setmapFitAlert] = useState(false);
     const [animationPlay, setanimationPlay] = useState(0);
     const [numIter, setnumiterChange] = useState(200);
-    const [iterChangeInput, setiterChangeInput] = useState(50);
+    const [iterChangeInput, setiterChangeInput] = useState(200);
     const [speed, setspeed] = useState(100);
-    const [speedChangeInput, setspeedChangeInput] = useState(1000);
+    const [speedChangeInput, setspeedChangeInput] = useState(100);
     const [size, setsize] = useState(10);
     const [sizeChange, setsizeChange] = useState(20);
     const [points, setPoints] = useState(null);
@@ -73,6 +74,24 @@ function AnimationBox(){
     const [mapData, setmapData] = useState(null);
     const [mapNames, setmapNames] = useState(false);
     const [mapSearchValue, setMapSearchValue] = useState(null);
+    const [displayMapSearchValues, setDisplayMapSearchValues] = useState(false);
+    const [showFullMaps, setShowFullMaps] = useState(false);
+    const [showFavMaps, setShowFavMaps] = useState(true);
+
+    // useEffect(()=>{
+    //     if(!showFullMaps){
+    //         if (mapSearchValue != undefined) {
+    //             if (mapSearchValue.length !== 0) {
+    //                 setDisplayMapSearchValues(true);
+    //             } else {
+    //                 setShowFavMaps(true);
+    //             }
+    //         } else {
+    //             setShowFavMaps(true);
+    //         }
+    //     }
+        
+    // }, [mapSearchValue])
    
     useEffect(()=>{
         async function getMapNamesData(){
@@ -216,19 +235,32 @@ function AnimationBox(){
     const IterButt = <IterButton setnumIterChange={setnumiterChange} iterChangeInput={iterChangeInput} setiterChangeInput={setiterChangeInput} />
 
     const animationElement = <div> 
-        {/* <button onClick={playButton}> play </button> */}
-        {showAlert && <Alert Title={'too fast!'} Long={'stop animation to see your changes'} cancelAlert={()=> cancelAlert(setshowAlert)}/>}
-        {mapFitAlert && <Alert Title={'map too large'} Long={'try reducing map size'} cancelAlert={()=>{cancelAlert(setmapFitAlert)}}/>}
-        {/* <Settings buttons={[SizeButt, SpeedButt, IterButt, PlayButt, StopBut]}/>  */}
-        {PlayButt}
-        {StopBut}
-        <LeftDrawer drawerName={'settings'} drawerHeading={'change settings'} buttons={[SizeButt, SpeedButt, IterButt]} setsize={setsize} 
-        sizeChange={sizeChange} setspeed={setspeed} speedChangeInput={speedChangeInput} setnumiterChange={setnumiterChange} iterChangeInput={iterChangeInput} />
-        <RightDrawer drawerName={'Choose Map'} drawerHeading={'Search for map'} setMapSearchValue={setMapSearchValue} mapNames={mapNames} setmapData={setmapData}
-         setconfigNum={setconfigNum} mapNameFilter={mapSearchValue}/>            
-        {canvas} 
-        {mapNames && <ConfigList mapNames={mapNames} setconfigNum={setconfigNum} setmapData={setmapData}/> }
+
+        <div className="flex flex-row justify-center">
+            <div className="basis-0.5 mr-12">
+                <LeftDrawer drawerName={'settings'} drawerHeading={'change settings'} buttons={[SizeButt, SpeedButt, IterButt]} setsize={setsize}
+                    sizeChange={sizeChange} setspeed={setspeed} speedChangeInput={speedChangeInput} setnumiterChange={setnumiterChange} iterChangeInput={iterChangeInput} />
+                <RightDrawer drawerName={'Choose Map'} drawerHeading={'Search for map'} setMapSearchValue={setMapSearchValue} mapNames={mapNames} setmapData={setmapData}
+                    setconfigNum={setconfigNum} mapNameFilter={mapSearchValue} showFullMaps={showFullMaps} setShowFullMaps={setShowFullMaps}
+                    displayMapSearchValues={displayMapSearchValues} setDisplayMapSearchValues={setDisplayMapSearchValues}
+                    showFavMaps={showFavMaps} setShowFavMaps={setShowFavMaps} />
+            </div>
+
+            <div className="basis-0.5 ml-12">
+                {showAlert && <Alert Title={'too fast!'} Long={'stop animation to see your changes'} cancelAlert={() => cancelAlert(setshowAlert)} />}
+                {mapFitAlert && <Alert Title={'map too large'} Long={'try reducing map size'} cancelAlert={() => { cancelAlert(setmapFitAlert) }} />}
+                {/* <Settings buttons={[SizeButt, SpeedButt, IterButt, PlayButt, StopBut]}/>  */}
+                {PlayButt}
+                {StopBut}
+            </div>
+            
         </div>
+
+        <div className="flex justify-center mt-12">
+            {canvas} 
+        </div>
+
+    </div>
     return animationElement;
 }
 
