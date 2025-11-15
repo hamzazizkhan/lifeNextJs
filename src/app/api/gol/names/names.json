@@ -1,1 +1,797 @@
-[{"name":"","period":"(p5)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic1.life"},{"name":"A for All","period":"(p6)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic2.life"},{"name":"acorn","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic3.life"},{"name":"aircraft carrier","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic4.life"},{"name":"airforce","period":"(p7)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic5.life"},{"name":"ants","period":"(p5 wick)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic6.life"},{"name":"aVerage","period":"(p5)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic7.life"},{"name":"b-heptomino","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic8.life"},{"name":"b-heptomino shuttle, p46 shuttle, twin bees shuttle","period":"(p46)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic9.life"},{"name":"bakery - 4 loaves:","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic10.life"},{"name":"barberpole - any length extension of this p2 oscillator:","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic11.life"},{"name":"barge","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic12.life"},{"name":"beacon","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic13.life"},{"name":"beehive","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic14.life"},{"name":"beehive and dock, beehive on big table","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic15.life"},{"name":"beehive with tail","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic16.life"},{"name":"bi-loaf, half bakery, loaf on loaf","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic17.life"},{"name":"biblock","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic18.life"},{"name":"big S, S-spiral","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic19.life"},{"name":"bipole, short barberpole - this length of the barberpole:","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic20.life"},{"name":"blinker","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic21.life"},{"name":"blinker ship - an object which travels while growing larger by\n  leaving an increasing trail of blinkers, but which leaves no\n  permanent exhaust.  Example:","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic22.life"},{"name":"block","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic23.life"},{"name":"block and dock, block on big table","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic24.life"},{"name":"block on table","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic25.life"},{"name":"blocker","period":"(p8)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic26.life"},{"name":"boat","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic27.life"},{"name":"boat on boat, boat-tie, bow tie, bi-boat","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic28.life"},{"name":"bookends","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic29.life"},{"name":"boss","period":"(p4)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic30.life"},{"name":"brain","period":"(c/3)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic31.life"},{"name":"bunnies","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic32.life"},{"name":"burloaferimeter","period":"(p7)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic33.life"},{"name":"caterer","period":"(p3)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic34.life"},{"name":"centinal","period":"(p100)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic35.life"},{"name":"chemist","period":"(p5)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic36.life"},{"name":"cis-mirrored R-bee","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic37.life"},{"name":"cis-boat with tail, down boat with tail","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic38.life"},{"name":"clock","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic39.life"},{"name":"cloverleaf, Achim's p4","period":"(p4)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic40.life"},{"name":"confused eaters","period":"(p4)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic41.life"},{"name":"cross","period":"(p3)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic42.life"},{"name":"dart","period":"(c/3)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic43.life"},{"name":"dead spark coil, JC","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic44.life"},{"name":"diamond ring","period":"(p3)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic45.life"},{"name":"double wing, moose antlers","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic46.life"},{"name":"eater, fishhook - this eater, which eats gliders and fish:","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic47.life"},{"name":"elevener, intentionless","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic48.life"},{"name":"figure 8, big beacon","period":"(p8)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic49.life"},{"name":"fleet - 4 ships:","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic50.life"},{"name":"fourteener, 14-ner","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic51.life"},{"name":"fumarole","period":"(p5)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic52.life"},{"name":"glider","period":"(c/4)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic53.life"},{"name":"Gosper gun, original glider gun","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic54.life"},{"name":"gourmet","period":"(p32)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic55.life"},{"name":"gray counter","period":"(p4)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic56.life"},{"name":"great on-off","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic57.life"},{"name":"hat","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic58.life"},{"name":"heavyweight emulator","period":"(p4)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic59.life"},{"name":"heavyweight spaceship, HWSS, big fish","period":"(c/2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic60.life"},{"name":"heavyweight volcano","period":"(p5)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic61.life"},{"name":"Hertz oscillator","period":"(p8)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic62.life"},{"name":"HighLife - an alternate set of rules similar to Conway's, but with\n  the additional rule that 6 neighbors generates a birth.  Most of\n  the interest in this variant is due to the replicator that evolves\n  from:","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic63.life"},{"name":"honeyfarm - 4 beehives:","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic64.life"},{"name":"hustler","period":"(p3)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic65.life"},{"name":"induction coil - any pattern used to stabilize a border.  Example:","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic66.life"},{"name":"integral sign","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic67.life"},{"name":"jam","period":"(p3)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic68.life"},{"name":"keys","period":"(p3)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic69.life"},{"name":"kickback reaction","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic70.life"},{"name":"Kok's galaxy","period":"(p8)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic71.life"},{"name":"light bulb","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic72.life"},{"name":"lightspeed wire - a wick that can burn non-destructively at the\n  speed of light, which might be useful for sending a signal or\n  constructing oscillators with periods not currently attainable.\n  Unfortunately, no way has been found to return a signal to its\n  starting point, either by reflecting it or bending it around a\n  corner.  Example:","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic73.life"},{"name":"lightweight emulator","period":"(p4)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic74.life"},{"name":"lightweight spaceship, LWSS, small fish","period":"(c/2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic75.life"},{"name":"loaf","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic76.life"},{"name":"long barge","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic77.life"},{"name":"long boat","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic78.life"},{"name":"long ship","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic79.life"},{"name":"loop","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic80.life"},{"name":"lumps of muck, LoM, blockade - 4 blocks:","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic81.life"},{"name":"mango, dove, cigar","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic82.life"},{"name":"mazing","period":"(p4)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic83.life"},{"name":"middleweight emulator","period":"(p4)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic84.life"},{"name":"middleweight spaceship, MWSS, medium fish","period":"(c/2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic85.life"},{"name":"middleweight volcano","period":"(p5)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic86.life"},{"name":"MIT oscillator, cuphook","period":"(p3)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic87.life"},{"name":"mold","period":"(p4)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic88.life"},{"name":"monogram, JHC","period":"(p4)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic89.life"},{"name":"negentropy","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic90.life"},{"name":"octagon II","period":"(p5)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic91.life"},{"name":"Orion","period":"(c/4)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic92.life"},{"name":"paperclip, drain trap","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic93.life"},{"name":"pedestle","period":"(p5)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic94.life"},{"name":"penny lane","period":"(p4)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic95.life"},{"name":"pentadecathlon, PD","period":"(p15)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic96.life"},{"name":"phoenix - any pattern whose cells all die in every generation, and\n  yet lives forever.  Example:","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic97.life"},{"name":"pi heptomino","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic98.life"},{"name":"pond","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic99.life"},{"name":"pond on pond, bi-pond","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic100.life"},{"name":"pressure cooker","period":"(p3)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic101.life"},{"name":"pseudo-barberpole","period":"(p5)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic102.life"},{"name":"pulsar, CP-pulsar, pulsar CP 48-56-72","period":"(p3)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic103.life"},{"name":"pushalong - a tagalong on the front end of a spaceship.  Example:","period":"(c/2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic104.life"},{"name":"pyrotechneczum","period":"(p8)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic105.life"},{"name":"quad, barberpole intersection","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic106.life"},{"name":"quapole, quadpole, barberpole of length 4 - this length of the\n  barberpole:","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic107.life"},{"name":"queen bee","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic108.life"},{"name":"queen bee shuttle, p30 shuttle","period":"(p30)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic109.life"},{"name":"r-pentomino","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic110.life"},{"name":"R2D2","period":"(p8)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic111.life"},{"name":"rabbits","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic112.life"},{"name":"rephaser","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic113.life"},{"name":"revolver","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic114.life"},{"name":"roteightor","period":"(p8)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic115.life"},{"name":"sawtooth - a pattern whose population is unbounded, but doesn't tend\n  uniformly to infinity.  The population returns to its minimum\n  value at intervals, producing a zig-zag graph.\nSchick engine","period":"(c/2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic116.life"},{"name":"scorpion","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic117.life"},{"name":"scrubber","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic118.life"},{"name":"shillelagh","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic119.life"},{"name":"ship","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic120.life"},{"name":"ship on boat, boat-ship-tie","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic121.life"},{"name":"shiptie, ship on ship, bi-ship, half fleet","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic122.life"},{"name":"siesta","period":"(p5)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic123.life"},{"name":"sinking ship","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic124.life"},{"name":"skewed quad","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic125.life"},{"name":"smiley","period":"(p8)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic126.life"},{"name":"snacker","period":"(p9)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic127.life"},{"name":"snake","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic128.life"},{"name":"snake pit","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic129.life"},{"name":"sombreros","period":"(p6)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic130.life"},{"name":"spark coil, grapser","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic131.life"},{"name":"Sparky","period":"(c/4)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic132.life"},{"name":"spiral","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic133.life"},{"name":"star","period":"(p3)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic134.life"},{"name":"switch engine:","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic135.life"},{"name":"table on table, ][, pair of tables","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic136.life"},{"name":"technician finished product","period":"(p5)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic137.life"},{"name":"test tube baby","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic138.life"},{"name":"toad","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic139.life"},{"name":"toadsucker - a hassler that sucks a toad.  Example:","period":"(p60)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic140.life"},{"name":"toaster, lightweight volcano","period":"(p5)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic141.life"},{"name":"traffic circle","period":"(p100)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic142.life"},{"name":"traffic lights - 4 blinkers:","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic143.life"},{"name":"trans-boat with tail, up boat with tail","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic144.life"},{"name":"trice tongs","period":"(p3)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic145.life"},{"name":"tripole, short barberpole - this length of the barberpole:","period":"(p2)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic146.life"},{"name":"tub","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic147.life"},{"name":"tub with tail","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic148.life"},{"name":"tubber","period":"(p3)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic149.life"},{"name":"tumbler","period":"(p14)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic150.life"},{"name":"turtle","period":"(c/3)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic151.life"},{"name":"twinhat, twin peaks","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic152.life"},{"name":"two eaters","period":"(p3)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic153.life"},{"name":"unix","period":"(p6)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic154.life"},{"name":"very long barge, long long barge","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic155.life"},{"name":"very long boat, long long boat","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic156.life"},{"name":"very long ship, long long ship","period":"(p1)","mapLink":"http://www.radicaleye.com/lifepage/picgloss/pic157.life"},{"name":"wicktrailer - an extensible tagalong for a spaceship.","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/"},{"name":"wicktrailer - an extensible tagalong for a spaceship.","period":"","mapLink":"http://www.radicaleye.com/lifepage/picgloss/"}]
+[
+    {
+        "name": "",
+        "period": "(p5)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic1.life"
+    },
+    {
+        "name": "A for All",
+        "period": "(p6)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic2.life"
+    },
+    {
+        "name": "acorn",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic3.life"
+    },
+    {
+        "name": "aircraft carrier",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic4.life"
+    },
+    {
+        "name": "airforce",
+        "period": "(p7)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic5.life"
+    },
+    {
+        "name": "ants",
+        "period": "(p5 wick)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic6.life"
+    },
+    {
+        "name": "aVerage",
+        "period": "(p5)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic7.life"
+    },
+    {
+        "name": "b-heptomino",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic8.life"
+    },
+    {
+        "name": "b-heptomino shuttle, p46 shuttle, twin bees shuttle",
+        "period": "(p46)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic9.life"
+    },
+    {
+        "name": "bakery - 4 loaves:",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic10.life"
+    },
+    {
+        "name": "barberpole - any length extension of this p2 oscillator:",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic11.life"
+    },
+    {
+        "name": "barge",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic12.life"
+    },
+    {
+        "name": "beacon",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic13.life"
+    },
+    {
+        "name": "beehive",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic14.life"
+    },
+    {
+        "name": "beehive and dock, beehive on big table",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic15.life"
+    },
+    {
+        "name": "beehive with tail",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic16.life"
+    },
+    {
+        "name": "bi-loaf, half bakery, loaf on loaf",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic17.life"
+    },
+    {
+        "name": "biblock",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic18.life"
+    },
+    {
+        "name": "big S, S-spiral",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic19.life"
+    },
+    {
+        "name": "bipole, short barberpole - this length of the barberpole:",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic20.life"
+    },
+    {
+        "name": "blinker",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic21.life"
+    },
+    {
+        "name": "blinker ship - an object which travels while growing larger by\n  leaving an increasing trail of blinkers, but which leaves no\n  permanent exhaust.  Example:",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic22.life"
+    },
+    {
+        "name": "block",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic23.life"
+    },
+    {
+        "name": "block and dock, block on big table",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic24.life"
+    },
+    {
+        "name": "block on table",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic25.life"
+    },
+    {
+        "name": "blocker",
+        "period": "(p8)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic26.life"
+    },
+    {
+        "name": "boat",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic27.life"
+    },
+    {
+        "name": "boat on boat, boat-tie, bow tie, bi-boat",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic28.life"
+    },
+    {
+        "name": "bookends",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic29.life"
+    },
+    {
+        "name": "boss",
+        "period": "(p4)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic30.life"
+    },
+    {
+        "name": "brain",
+        "period": "(c/3)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic31.life"
+    },
+    {
+        "name": "bunnies",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic32.life"
+    },
+    {
+        "name": "burloaferimeter",
+        "period": "(p7)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic33.life"
+    },
+    {
+        "name": "caterer",
+        "period": "(p3)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic34.life"
+    },
+    {
+        "name": "centinal",
+        "period": "(p100)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic35.life"
+    },
+    {
+        "name": "chemist",
+        "period": "(p5)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic36.life"
+    },
+    {
+        "name": "cis-mirrored R-bee",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic37.life"
+    },
+    {
+        "name": "cis-boat with tail, down boat with tail",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic38.life"
+    },
+    {
+        "name": "clock",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic39.life"
+    },
+    {
+        "name": "cloverleaf, Achim's p4",
+        "period": "(p4)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic40.life"
+    },
+    {
+        "name": "confused eaters",
+        "period": "(p4)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic41.life"
+    },
+    {
+        "name": "cross",
+        "period": "(p3)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic42.life"
+    },
+    {
+        "name": "dart",
+        "period": "(c/3)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic43.life"
+    },
+    {
+        "name": "dead spark coil, JC",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic44.life"
+    },
+    {
+        "name": "diamond ring",
+        "period": "(p3)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic45.life"
+    },
+    {
+        "name": "double wing, moose antlers",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic46.life"
+    },
+    {
+        "name": "eater, fishhook - this eater, which eats gliders and fish:",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic47.life"
+    },
+    {
+        "name": "elevener, intentionless",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic48.life"
+    },
+    {
+        "name": "figure 8, big beacon",
+        "period": "(p8)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic49.life"
+    },
+    {
+        "name": "fleet - 4 ships:",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic50.life"
+    },
+    {
+        "name": "fourteener, 14-ner",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic51.life"
+    },
+    {
+        "name": "fumarole",
+        "period": "(p5)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic52.life"
+    },
+    {
+        "name": "glider",
+        "period": "(c/4)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic53.life"
+    },
+    {
+        "name": "Gosper gun, original glider gun",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic54.life"
+    },
+    {
+        "name": "gourmet",
+        "period": "(p32)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic55.life"
+    },
+    {
+        "name": "gray counter",
+        "period": "(p4)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic56.life"
+    },
+    {
+        "name": "great on-off",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic57.life"
+    },
+    {
+        "name": "hat",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic58.life"
+    },
+    {
+        "name": "heavyweight emulator",
+        "period": "(p4)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic59.life"
+    },
+    {
+        "name": "heavyweight spaceship, HWSS, big fish",
+        "period": "(c/2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic60.life"
+    },
+    {
+        "name": "heavyweight volcano",
+        "period": "(p5)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic61.life"
+    },
+    {
+        "name": "Hertz oscillator",
+        "period": "(p8)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic62.life"
+    },
+    {
+        "name": "HighLife - an alternate set of rules similar to Conway's, but with\n  the additional rule that 6 neighbors generates a birth.  Most of\n  the interest in this variant is due to the replicator that evolves\n  from:",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic63.life"
+    },
+    {
+        "name": "honeyfarm - 4 beehives:",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic64.life"
+    },
+    {
+        "name": "hustler",
+        "period": "(p3)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic65.life"
+    },
+    {
+        "name": "induction coil - any pattern used to stabilize a border.  Example:",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic66.life"
+    },
+    {
+        "name": "integral sign",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic67.life"
+    },
+    {
+        "name": "jam",
+        "period": "(p3)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic68.life"
+    },
+    {
+        "name": "keys",
+        "period": "(p3)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic69.life"
+    },
+    {
+        "name": "kickback reaction",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic70.life"
+    },
+    {
+        "name": "Kok's galaxy",
+        "period": "(p8)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic71.life"
+    },
+    {
+        "name": "light bulb",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic72.life"
+    },
+    {
+        "name": "lightspeed wire - a wick that can burn non-destructively at the\n  speed of light, which might be useful for sending a signal or\n  constructing oscillators with periods not currently attainable.\n  Unfortunately, no way has been found to return a signal to its\n  starting point, either by reflecting it or bending it around a\n  corner.  Example:",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic73.life"
+    },
+    {
+        "name": "lightweight emulator",
+        "period": "(p4)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic74.life"
+    },
+    {
+        "name": "lightweight spaceship, LWSS, small fish",
+        "period": "(c/2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic75.life"
+    },
+    {
+        "name": "loaf",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic76.life"
+    },
+    {
+        "name": "long barge",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic77.life"
+    },
+    {
+        "name": "long boat",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic78.life"
+    },
+    {
+        "name": "long ship",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic79.life"
+    },
+    {
+        "name": "loop",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic80.life"
+    },
+    {
+        "name": "lumps of muck, LoM, blockade - 4 blocks:",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic81.life"
+    },
+    {
+        "name": "mango, dove, cigar",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic82.life"
+    },
+    {
+        "name": "mazing",
+        "period": "(p4)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic83.life"
+    },
+    {
+        "name": "middleweight emulator",
+        "period": "(p4)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic84.life"
+    },
+    {
+        "name": "middleweight spaceship, MWSS, medium fish",
+        "period": "(c/2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic85.life"
+    },
+    {
+        "name": "middleweight volcano",
+        "period": "(p5)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic86.life"
+    },
+    {
+        "name": "MIT oscillator, cuphook",
+        "period": "(p3)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic87.life"
+    },
+    {
+        "name": "mold",
+        "period": "(p4)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic88.life"
+    },
+    {
+        "name": "monogram, JHC",
+        "period": "(p4)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic89.life"
+    },
+    {
+        "name": "negentropy",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic90.life"
+    },
+    {
+        "name": "octagon II",
+        "period": "(p5)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic91.life"
+    },
+    {
+        "name": "Orion",
+        "period": "(c/4)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic92.life"
+    },
+    {
+        "name": "paperclip, drain trap",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic93.life"
+    },
+    {
+        "name": "pedestle",
+        "period": "(p5)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic94.life"
+    },
+    {
+        "name": "penny lane",
+        "period": "(p4)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic95.life"
+    },
+    {
+        "name": "pentadecathlon, PD",
+        "period": "(p15)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic96.life"
+    },
+    {
+        "name": "phoenix - any pattern whose cells all die in every generation, and\n  yet lives forever.  Example:",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic97.life"
+    },
+    {
+        "name": "pi heptomino",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic98.life"
+    },
+    {
+        "name": "pond",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic99.life"
+    },
+    {
+        "name": "pond on pond, bi-pond",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic100.life"
+    },
+    {
+        "name": "pressure cooker",
+        "period": "(p3)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic101.life"
+    },
+    {
+        "name": "pseudo-barberpole",
+        "period": "(p5)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic102.life"
+    },
+    {
+        "name": "pulsar, CP-pulsar, pulsar CP 48-56-72",
+        "period": "(p3)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic103.life"
+    },
+    {
+        "name": "pushalong - a tagalong on the front end of a spaceship.  Example:",
+        "period": "(c/2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic104.life"
+    },
+    {
+        "name": "pyrotechneczum",
+        "period": "(p8)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic105.life"
+    },
+    {
+        "name": "quad, barberpole intersection",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic106.life"
+    },
+    {
+        "name": "quapole, quadpole, barberpole of length 4 - this length of the\n  barberpole:",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic107.life"
+    },
+    {
+        "name": "queen bee",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic108.life"
+    },
+    {
+        "name": "queen bee shuttle, p30 shuttle",
+        "period": "(p30)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic109.life"
+    },
+    {
+        "name": "r-pentomino",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic110.life"
+    },
+    {
+        "name": "R2D2",
+        "period": "(p8)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic111.life"
+    },
+    {
+        "name": "rabbits",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic112.life"
+    },
+    {
+        "name": "rephaser",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic113.life"
+    },
+    {
+        "name": "revolver",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic114.life"
+    },
+    {
+        "name": "roteightor",
+        "period": "(p8)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic115.life"
+    },
+    {
+        "name": "sawtooth - a pattern whose population is unbounded, but doesn't tend\n  uniformly to infinity.  The population returns to its minimum\n  value at intervals, producing a zig-zag graph.\nSchick engine",
+        "period": "(c/2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic116.life"
+    },
+    {
+        "name": "scorpion",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic117.life"
+    },
+    {
+        "name": "scrubber",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic118.life"
+    },
+    {
+        "name": "shillelagh",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic119.life"
+    },
+    {
+        "name": "ship",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic120.life"
+    },
+    {
+        "name": "ship on boat, boat-ship-tie",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic121.life"
+    },
+    {
+        "name": "shiptie, ship on ship, bi-ship, half fleet",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic122.life"
+    },
+    {
+        "name": "siesta",
+        "period": "(p5)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic123.life"
+    },
+    {
+        "name": "sinking ship",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic124.life"
+    },
+    {
+        "name": "skewed quad",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic125.life"
+    },
+    {
+        "name": "smiley",
+        "period": "(p8)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic126.life"
+    },
+    {
+        "name": "snacker",
+        "period": "(p9)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic127.life"
+    },
+    {
+        "name": "snake",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic128.life"
+    },
+    {
+        "name": "snake pit",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic129.life"
+    },
+    {
+        "name": "sombreros",
+        "period": "(p6)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic130.life"
+    },
+    {
+        "name": "spark coil, grapser",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic131.life"
+    },
+    {
+        "name": "Sparky",
+        "period": "(c/4)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic132.life"
+    },
+    {
+        "name": "spiral",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic133.life"
+    },
+    {
+        "name": "star",
+        "period": "(p3)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic134.life"
+    },
+    {
+        "name": "switch engine:",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic135.life"
+    },
+    {
+        "name": "table on table, ][, pair of tables",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic136.life"
+    },
+    {
+        "name": "technician finished product",
+        "period": "(p5)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic137.life"
+    },
+    {
+        "name": "test tube baby",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic138.life"
+    },
+    {
+        "name": "toad",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic139.life"
+    },
+    {
+        "name": "toadsucker - a hassler that sucks a toad.  Example:",
+        "period": "(p60)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic140.life"
+    },
+    {
+        "name": "toaster, lightweight volcano",
+        "period": "(p5)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic141.life"
+    },
+    {
+        "name": "traffic circle",
+        "period": "(p100)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic142.life"
+    },
+    {
+        "name": "traffic lights - 4 blinkers:",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic143.life"
+    },
+    {
+        "name": "trans-boat with tail, up boat with tail",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic144.life"
+    },
+    {
+        "name": "trice tongs",
+        "period": "(p3)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic145.life"
+    },
+    {
+        "name": "tripole, short barberpole - this length of the barberpole:",
+        "period": "(p2)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic146.life"
+    },
+    {
+        "name": "tub",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic147.life"
+    },
+    {
+        "name": "tub with tail",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic148.life"
+    },
+    {
+        "name": "tubber",
+        "period": "(p3)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic149.life"
+    },
+    {
+        "name": "tumbler",
+        "period": "(p14)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic150.life"
+    },
+    {
+        "name": "turtle",
+        "period": "(c/3)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic151.life"
+    },
+    {
+        "name": "twinhat, twin peaks",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic152.life"
+    },
+    {
+        "name": "two eaters",
+        "period": "(p3)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic153.life"
+    },
+    {
+        "name": "unix",
+        "period": "(p6)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic154.life"
+    },
+    {
+        "name": "very long barge, long long barge",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic155.life"
+    },
+    {
+        "name": "very long boat, long long boat",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic156.life"
+    },
+    {
+        "name": "very long ship, long long ship",
+        "period": "(p1)",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/pic157.life"
+    },
+    {
+        "name": "wicktrailer - an extensible tagalong for a spaceship.",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/"
+    },
+    {
+        "name": "wicktrailer - an extensible tagalong for a spaceship.",
+        "period": "",
+        "mapLink": "http://www.radicaleye.com/lifepage/picgloss/"
+    }
+]

@@ -9,6 +9,8 @@ import PlayButton from '@/components/gol/PlayButton'
 import SizeButton from '@/components/gol/SizeButton'
 import SpeedButton from '@/components/gol/SpeedButton'
 import IterButton from '@/components/gol/IterButton'
+import ColorPicker from'@/components/gol/ColorPicker'
+import InputSize from '@/components/gol/InputSize'
 import Point from '@/components/gol/utils/Point'
 import blinker from '@/components/gol/utils/blinker'
 import findCentroidPoint from '@/components/gol/utils/findCentroidPoint'
@@ -29,7 +31,7 @@ async function execute(points,  ctx, width, height, speed, gridDimensions, end=1
     var points2 = [];
     for (let i = 0; i < end; i++) {
         if (globalStopAnimation===1){return;}
-        ctx.fillStyle = "rgb(0, 0, 0)";
+        ctx.fillStyle = "rgb(0, 0, 0, 0.5)";
         ctx.fillRect(0, 0, width, height);
         for (let pt = 0; pt < points.length; pt++) {
             //  need two sets of points
@@ -53,6 +55,10 @@ async function execute(points,  ctx, width, height, speed, gridDimensions, end=1
 
 
 function AnimationBox(){
+    const defaultSize = 10;
+    const defaultSpeed = 100;
+    const defaultNumIter = 200;
+
     const box = useRef(null);
     const canvas = <canvas ref={box}></canvas>;
     const percentageReduce = 0.20;
@@ -61,12 +67,12 @@ function AnimationBox(){
     const [showAlert, setshowAlert] = useState(false);
     const [mapFitAlert, setmapFitAlert] = useState(false);
     const [animationPlay, setanimationPlay] = useState(0);
-    const [numIter, setnumiterChange] = useState(200);
-    const [iterChangeInput, setiterChangeInput] = useState(200);
-    const [speed, setspeed] = useState(100);
-    const [speedChangeInput, setspeedChangeInput] = useState(100);
-    const [size, setsize] = useState(10);
-    const [sizeChange, setsizeChange] = useState(20);
+    const [numIter, setnumiterChange] = useState(defaultNumIter);
+    const [iterChangeInput, setiterChangeInput] = useState(defaultNumIter);
+    const [speed, setspeed] = useState(defaultSpeed);
+    const [speedChangeInput, setspeedChangeInput] = useState(defaultSpeed);
+    const [size, setsize] = useState(defaultSize);
+    const [sizeChange, setsizeChange] = useState(defaultSize);
     const [points, setPoints] = useState(null);
     const [ctx, setCtx] = useState(null);
     const [gridDimensions, setgridDimensions] = useState(null);
@@ -77,35 +83,24 @@ function AnimationBox(){
     const [displayMapSearchValues, setDisplayMapSearchValues] = useState(false);
     const [showFullMaps, setShowFullMaps] = useState(false);
     const [showFavMaps, setShowFavMaps] = useState(true);
-
-    // useEffect(()=>{
-    //     if(!showFullMaps){
-    //         if (mapSearchValue != undefined) {
-    //             if (mapSearchValue.length !== 0) {
-    //                 setDisplayMapSearchValues(true);
-    //             } else {
-    //                 setShowFavMaps(true);
-    //             }
-    //         } else {
-    //             setShowFavMaps(true);
-    //         }
-    //     }
-        
-    // }, [mapSearchValue])
+    const [filterValue, setFilterValue] = useState(null);
+    const [pointsColor, setPointsColor] = useState("rgba(59, 224, 26)");
+    const [changeColor, setChangeColor] = useState(false);
    
+
     useEffect(()=>{
         async function getMapNamesData(){
-            const names = await getMapNamesPromise();
+            const names = await getMapNamesPromise(filterValue);
             setmapNames(names);
         }
         getMapNamesData();
         console.log('fetch for names');
-    }, []) 
+    }, [filterValue]) 
 
     useEffect(
         ()=>{
             if(animationPlay !== 1){
-                
+
                 if(showAlert===true || mapFitAlert===true){
                     setshowAlert(false)
                     setmapFitAlert(false);
@@ -138,7 +133,7 @@ function AnimationBox(){
 
                 const populateTime = performance.now();
                 const solePop = performance.now();
-                const points = populate(gridDimensions);
+                const points = populate(gridDimensions, pointsColor);
                 const endsolePop = performance.now();
                 console.log('time taken for populating only ', endsolePop-solePop);
 
@@ -197,6 +192,7 @@ function AnimationBox(){
                 setgridDimensions(gridDimensions);
                 setCtx(ctx);
                 setPoints(points);
+                setChangeColor(false);
                 console.log(`useEffect ran again. values: size ${size}, speed ${speed}, map num ${configNum} iter ${numIter}`);
             }else{
                 const woot =1;
@@ -208,7 +204,7 @@ function AnimationBox(){
                 console.log(`useEffect Else branch ran again value of ranDuringAnimation should be 1 ${ranDuringAnimation.current}`);
             }
         }
-        ,[configNum, size,   manualReRun, speed, size, numIter]);
+        ,[configNum, size,   manualReRun, speed, size, numIter, changeColor]);
 
     // useEffect(()=>{
     //     for (ele of mapNames){
@@ -233,30 +229,46 @@ function AnimationBox(){
     const SizeButt = <SizeButton setsize={setsize} setsizeChange={setsizeChange} sizeChange={sizeChange} />
     const SpeedButt = <SpeedButton setspeedChangeInput={setspeedChangeInput} speedChangeInput={speedChangeInput} setspeed={setspeed} />
     const IterButt = <IterButton setnumIterChange={setnumiterChange} iterChangeInput={iterChangeInput} setiterChangeInput={setiterChangeInput} />
+    const colorPicker = <ColorPicker setPointsColor={setPointsColor} setChangeColor={setChangeColor}/>
 
-    const animationElement = <div> 
+    const animationElement = <div > 
+        {showAlert && <Alert Title={'too fast!'} Long={'stop animation to see your changes'} cancelAlert={() => cancelAlert(setshowAlert)} />}
+        {mapFitAlert && <Alert Title={'map too large'} Long={'try reducing map size'} cancelAlert={() => { cancelAlert(setmapFitAlert) }} />}
+        <div className="flex flex-row justify-center my-6">
 
-        <div className="flex flex-row justify-center">
-            <div className="basis-0.5 mr-12">
-                <LeftDrawer drawerName={'settings'} drawerHeading={'change settings'} buttons={[SizeButt, SpeedButt, IterButt]} setsize={setsize}
-                    sizeChange={sizeChange} setspeed={setspeed} speedChangeInput={speedChangeInput} setnumiterChange={setnumiterChange} iterChangeInput={iterChangeInput} />
-                <RightDrawer drawerName={'Choose Map'} drawerHeading={'Search for map'} setMapSearchValue={setMapSearchValue} mapNames={mapNames} setmapData={setmapData}
-                    setconfigNum={setconfigNum} mapNameFilter={mapSearchValue} showFullMaps={showFullMaps} setShowFullMaps={setShowFullMaps}
-                    displayMapSearchValues={displayMapSearchValues} setDisplayMapSearchValues={setDisplayMapSearchValues}
-                    showFavMaps={showFavMaps} setShowFavMaps={setShowFavMaps} />
+            <div className="flex flex-col mx-2">
+                <div className="my-2">
+                    <LeftDrawer drawerName={'settings'} drawerHeading={'change settings'} buttons={[SizeButt, SpeedButt, IterButt]} setsize={setsize} size={size}
+                        sizeChange={sizeChange} setspeed={setspeed} speed={speed} speedChangeInput={speedChangeInput} 
+                        setnumiterChange={setnumiterChange} numIter={numIter} iterChangeInput={iterChangeInput} />
+  
+                </div>
+                <div>
+                    <RightDrawer drawerName={'Choose Map'} drawerHeading={'Search for map'} setMapSearchValue={setMapSearchValue} mapNames={mapNames} setmapData={setmapData}
+                        setconfigNum={setconfigNum} mapNameFilter={mapSearchValue} showFullMaps={showFullMaps} setShowFullMaps={setShowFullMaps}
+                        displayMapSearchValues={displayMapSearchValues} setDisplayMapSearchValues={setDisplayMapSearchValues}
+                        showFavMaps={showFavMaps} setShowFavMaps={setShowFavMaps} setFilterValue={setFilterValue} filterValue={filterValue}/>
+                </div>   
+            </div>
+            
+            <div className="flex flex-col mx-2">
+                <div className="my-2">
+                    {PlayButt}
+                </div>
+                <div>
+                    {StopBut}
+                </div>
             </div>
 
-            <div className="basis-0.5 ml-12">
-                {showAlert && <Alert Title={'too fast!'} Long={'stop animation to see your changes'} cancelAlert={() => cancelAlert(setshowAlert)} />}
-                {mapFitAlert && <Alert Title={'map too large'} Long={'try reducing map size'} cancelAlert={() => { cancelAlert(setmapFitAlert) }} />}
-                {/* <Settings buttons={[SizeButt, SpeedButt, IterButt, PlayButt, StopBut]}/>  */}
-                {PlayButt}
-                {StopBut}
+            <div className="flex flex-col mx-2">
+                <div className="my-2">
+                    {colorPicker}
+                </div>
             </div>
             
         </div>
 
-        <div className="flex justify-center mt-12">
+        <div className="flex justify-center my-6">
             {canvas} 
         </div>
 
@@ -269,63 +281,12 @@ function AnimationBox(){
 export default function Golpage(){
     return (
         <div>
-            <p> this is the conway GOL page </p>
+            {/* <div>
+                <label for="color-picker">color: </label>
+                <input type="color" id="color-picker" value="#ff0000"> color </input>
+            </div> */}
+            <p className="mask-b-from-neutral-50 font-stretch-105 text-center text-5xl font-bold"> Conways Game Of Life </p>
             <AnimationBox/>      
         </div>
    );
 }
-
-
-/*
-==============================================================
-done:
-- if you click on new map mid animation - surrent animation stops and new animation map displayed 
-- set size, speed, number of iterations, stop
-
-1) speed up inital config (esp for smaller scales and larger maps) set up.
-- figure out sequence of events
-- time chunks of code to identify problem areas (config setup issue / animation plot issue).
-- find solution.
-2) i want to be able to set the scale really small very easily. 
-
-pop up to wait for animation to finish to see new settings.
-display map name, period number.
-seperate out components - make cleaner and mroe efficient so that you dont make un needed fetch requests to json data for map names
-error message when map does fit screen, reduce scale notification
-refactor to clean up code
-centre images
-maybe input field and option for parameters
-notification for changes during animation
-==============================================================
-
-easy:
-design page:
-Title
-- settings (left), play stop (centre), choose map (right), choose theme (top)
-    - left drawer - settings
-        - one save changes button
-        - range bar
-    - right drawer - choose map
-        - search bar by name
-            - autofill
-            - list of maps changes accordingly
-            - see full list of 156 maps
-        - filter by period
-            - period high to low
-        - list of maps ordered by name, scrollable
-    - top drawer - choose theme
-- animation in centre - elaborate.
-- recommended settings divider - maybe images of recommended maps and shit
-
-theme settings:
-    - purple and white
-    - trailing effect
-    - theme setting cahnges animation and page!
-
-create route to gol page on main life page
-
-if time allows:
-drag and drop combine two configs in the same canvas!! 
-click to add point
-creat an option to change rule set - HighLife - an alternate set of rules similar to Conway's, but with the additional rule that 6 neighbors generates a birth. Most of the interest in this variant is due to the replicator
-*/

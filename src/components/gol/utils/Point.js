@@ -5,7 +5,7 @@ export default class Point{
         this.status = 0;
         this.id = id;
         this.neighs = [];
-        this.color = "rgba(59, 224, 26, 0.68)";
+        this.color = "rgba(59, 224, 26)";
         this.point = [x, y];
     }
     
